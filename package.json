@@ -2,7 +2,7 @@
   "name": "vue-player",
   "version": "0.1.0",
   "description": "",
-  "author": " <kylin>",
+  "author": "kylin",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
