@@ -126,6 +126,7 @@
             }
         },
         ready(){
+
             this.audio = document.getElementById("audio");
             this.playBarPosLeft = document.getElementById("play_bar").getBoundingClientRect().left;
             //todo:resize窗口时距离窗口左边的值
@@ -133,7 +134,7 @@
         }
     }
 </script>
-<style>
+<style lang="less" rel="stylesheet/less">
     @-webkit-keyframes circle{
         0%{ transform:rotate(0deg); }
         100%{ transform:rotate(360deg); }

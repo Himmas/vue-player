@@ -1,7 +1,7 @@
 {
   "name": "vue-player",
   "version": "0.1.0",
-  "description": "基于vue的音乐播放器",
+  "description": "",
   "author": " <kylin>",
   "private": true,
   "scripts": {
@@ -50,6 +50,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
+    "less-loader": "^2.2.3",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "nightwatch": "^0.8.18",
