@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Audio from './App.vue'
+import Player from './components/player.vue'
 import VueRouter from 'vue-router'
 import filters from './filters'
 
@@ -14,7 +14,7 @@ var App = Vue.extend({})
 
 router.map({
     '/': {
-        component: Audio
+        component: Player
     }
 })
 
