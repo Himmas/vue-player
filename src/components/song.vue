@@ -2,7 +2,9 @@
     <div class="song-box">
         <div class="song-bg"></div>
         <div class="song-head"></div>
-        <div class="container-box"></div>
+        <div class="container-box">
+            <slide></slide>
+        </div>
         <div class="player-box"></div>
     </div>
 </template>
@@ -39,5 +41,10 @@
     }
 </style>
 <script type="text/ecmascript-6">
-
+    import slide from './slide'
+    export default{
+        components:{
+            slide
+        }
+    }
 </script>
