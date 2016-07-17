@@ -1,9 +1,11 @@
 import Vue from 'vue'
-import Player from './components/player.vue'
+import Song from './components/song'
+import List from './components/list'
 import VueRouter from 'vue-router'
 import filters from './filters'
 
 require('./assets/css/m-reset')
+require('./assets/css/global')
 
 //注册filters
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
@@ -16,7 +18,10 @@ var App = Vue.extend({})
 
 router.map({
     '/': {
-        component: Player
+        component: Song
+    },
+    '/list': {
+        component: List
     }
 })
 
