@@ -18,10 +18,9 @@
 │   ├── asserts                     # 资源文件夹
 │   │        ├── images             # 图片
 │   │        ├── css                # 样式表
-│   │        ├── fonts              # 字体
-│   │        └── js                 # 脚本
+│   │        └── fonts              # 字体
 │   │
-│   ├── main.js                     # webpack入口
+│   ├── main.js                     # webpack entry
 │   └── ...
 │
 │
