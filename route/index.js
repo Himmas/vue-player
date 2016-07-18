@@ -10,8 +10,7 @@ var api = require('NeteaseCloudMusicApi').api
 module.exports = function (app) {
 
     app.get('/song', function (req, res) {
-        var id = req.body.id
-        console.log(id);
+        var id = req.query.id
         api.song(id,function(data){
             res.json(data)
         })

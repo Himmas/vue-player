@@ -8,7 +8,10 @@ var bodyParser = require('body-parser')
 var routes = require('./route/index')
 
 app.use('/static', express.static('./static'))
-app.use(bodyParser())
+
+// app.use(bodyParser())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
