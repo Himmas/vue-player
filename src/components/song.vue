@@ -43,12 +43,18 @@
 <script type="text/ecmascript-6">
     import slide from './slide'
     export default{
+        data(){
+            return{
+                songInfo:{}
+            }
+        },
         components:{
             slide
         },
         created(){
             this.$http.get('http://localhost:3500/song?id=25714355').then((response) => {
                 console.log(response.data);
+                this.$set('songInfo', JSON.parse(response.data))
             }, (response) => {
                 // error callback
             });
