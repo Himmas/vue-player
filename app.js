@@ -3,10 +3,12 @@
  */
 var express = require('express')
 var app = express()
+var bodyParser = require('body-parser')
 
 var routes = require('./route/index')
 
 app.use('/static', express.static('./static'))
+app.use(bodyParser())
 
 //设置跨域访问
 app.all('*', function(req, res, next) {

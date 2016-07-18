@@ -45,6 +45,13 @@
     export default{
         components:{
             slide
+        },
+        created(){
+            this.$http.get('http://localhost:3500/song?id=25714355').then((response) => {
+                console.log(response);
+            }, (response) => {
+                // error callback
+            });
         }
     }
 </script>

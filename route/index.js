@@ -4,13 +4,16 @@
 
 var express = require('express');
 var router = express.Router();
+var api = require('NeteaseCloudMusicApi').api
 
 
 module.exports = function (app) {
 
-    app.get('/', function (req, res) {
-        res.json({
-            status:"success"
+    app.get('/song', function (req, res) {
+        var id = req.body.id
+        console.log(id);
+        api.song(id,function(data){
+            res.json(data)
         })
     });
 };
