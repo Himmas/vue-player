@@ -5,7 +5,9 @@
         <div class="container-box">
             <slide></slide>
         </div>
-        <div class="player-box"></div>
+        <div class="player-box">
+            <player></player>
+        </div>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
@@ -28,7 +30,7 @@
             top: .5rem;
             bottom: 1.5rem;
             width: 100%;
-            background: #2C2C2C;
+            /*background: #2C2C2C;*/
         }
         .player-box{
             position: absolute;
@@ -36,12 +38,13 @@
             height: 1.5rem;
             top: auto;
             width: 100%;
-            background: #00d4b4;
+            /*background: #00d4b4;*/
         }
     }
 </style>
 <script type="text/ecmascript-6">
     import slide from './slide'
+    import player from './player'
     export default{
         data(){
             return{
@@ -49,7 +52,7 @@
             }
         },
         components:{
-            slide
+            slide,player
         },
         created(){
 //            this.$http.post('http://localhost:3500/song',{id:25714355}).then((response) => {
