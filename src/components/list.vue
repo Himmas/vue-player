@@ -1,6 +1,8 @@
 <template>
     <div class="list-box">
-        <div class="back"><i></i></div>
+        <div class="back">
+            <i class="iconfont icon-back"></i>
+        </div>
         <div class="list-items">
             <items></items>
         </div>
@@ -14,23 +16,23 @@
         .back {
             position: absolute;
             width: 100%;
-            height: 0.5rem;
-            background: #ff0000;
+            height: .5rem;
+            background: #fff;
         }
         .list-items {
             position: absolute;
-            top: 0.5rem;
-            bottom: 0rem;
+            top: .5rem;
+            bottom: 0;
             width: 100%;
             background: #fff;
         }
     }
 </style>
 <script type="text/ecmascript-6">
-    import Items from './items'
+    import items from './items'
     export default{
         components: {
-            items:Items
+            items
         }
     }
 </script>
