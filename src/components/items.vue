@@ -4,42 +4,47 @@
             <li v-for="item in items" >
                 <div class="item" :class="isPlay">
                     <img src="{{ item.url }}">
-                    <span><p>{{ item.name}}</p><p>{{ item.singer }}</p></span>
+                    <span><p class="song">{{ item.name}}</p><p class="singer">{{ item.singer }}</p></span>
                     <div class="ibtn" @click="play">
-                        <i class="iconfont icon-play"></i>
+                        <i class="iconfont icon-play icon-size"></i>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
 </template>
-<link href="../assets/css/icon.less" type="text/css" />
 <style rel="stylesheet/less" lang="less">
     .item{
         position: relative;
-        //height: .8rem;
-        border-bottom:.001rem #e8e4e4 solid;
+        border-bottom:1px #e8e4e4 solid;
         width: 100%;
+        padding:.1rem;
+        overflow:hidden;
         img{
-            position: relative;
-            left:.1rem;
-            top:.1rem;
-            bottom: .1rem;
             height: .56rem;
             width: .56rem;
             border:.02rem #f7fafc solid;
             border-radius:50%;
+            float:left;
         }
         span{
-            position:relative;
-            left:0.3rem;
-            display: inline-block;
-            height: .56rem;
+            float:left;
+            margin-left:.1rem;
+            padding:.08rem;
+            .song{
+                line-height:0.26rem;
+                font-size:.2rem;
+            }
+            .singer{
+                line-height:0.18rem;
+            }
         }
         .ibtn{
-            position: absolute;
-            right: 0.1rem;
-            top: .3rem;
+            float:right;
+            line-height:.6rem;
+            .icon-size{
+                font-size:22px;
+            }
         }
     }
 </style>
