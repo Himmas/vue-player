@@ -22,4 +22,10 @@ module.exports = function (app) {
             res.json(data)
         })
     });
+    app.get('/lrc', function (req, res) {
+        var id = req.query.id
+        api.lrc(id,function(data){
+            res.json(data)
+        })
+    });
 };

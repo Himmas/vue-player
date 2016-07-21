@@ -4,7 +4,10 @@
             <li v-for="item in items" >
                 <div class="item" :class="isPlay">
                     <img src="{{ item.url }}">
-                    <span><p class="song">{{ item.name}}</p><p class="singer">{{ item.singer }}</p></span>
+                    <span>
+                        <p class="song">{{ item.name}}</p>
+                        <p class="singer">{{ item.singer }}</p>
+                    </span>
                     <div class="ibtn" @click="play">
                         <i class="iconfont icon-play icon-size"></i>
                     </div>
@@ -43,7 +46,7 @@
             float:right;
             line-height:.6rem;
             .icon-size{
-                font-size:22px;
+                /*font-size:22px;*/
             }
         }
     }
