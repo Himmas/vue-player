@@ -8,7 +8,6 @@
         </div>
         <div class="player-box">
             <player></player>
-            
         </div>
     </div>
 </template>
