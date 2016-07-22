@@ -39,7 +39,6 @@
             height: 1.5rem;
             top: auto;
             width: 100%;
-            /*background: #00d4b4;*/
         }
     }
 </style>
