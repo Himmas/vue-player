@@ -31,7 +31,6 @@
             top: .5rem;
             bottom: 1.5rem;
             width: 100%;
-            /*background: #2C2C2C;*/
         }
         .player-box{
             position: absolute;
