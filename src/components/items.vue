@@ -9,7 +9,7 @@
                         <p class="singer">{{ item.singer }}</p>
                     </span>
                     <div class="ibtn" @click="play">
-                        <i class="iconfont icon-play icon-size"></i>
+                        <i class="iconfont icon-play-line icon-size"></i>
                     </div>
                 </div>
             </li>
