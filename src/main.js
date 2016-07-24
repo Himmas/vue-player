@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import hostSetting from './hostSetting'
 import Song from './components/song'
 import List from './components/list'
 import VueRouter from 'vue-router'
@@ -14,6 +15,8 @@ Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+
+window.HOST = hostSetting.protocol+hostSetting.host+':'+hostSetting.port
 
 var router = new VueRouter()
 

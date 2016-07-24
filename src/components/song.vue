@@ -4,6 +4,7 @@
         <div class="song-head"></div>
         <div class="container-box">
             <slide></slide>
+            <lrc :song-id="id"></lrc>
         </div>
         <div class="player-box">
             <player></player>
@@ -30,7 +31,6 @@
             top: .5rem;
             bottom: 1.5rem;
             width: 100%;
-            /*background: #2C2C2C;*/
         }
         .player-box{
             position: absolute;
@@ -38,21 +38,22 @@
             height: 1.5rem;
             top: auto;
             width: 100%;
-            /*background: #00d4b4;*/
         }
     }
 </style>
 <script type="text/ecmascript-6">
     import slide from './slide'
     import player from './player'
+    import lrc from './lrc'
     export default{
         data(){
             return{
-                songInfo:{}
+                songInfo:{},
+                id:420513838
             }
         },
         components:{
-            slide,player
+            slide,player,lrc
         },
         created(){
 //            this.$http.post('http://localhost:3500/song',{id:25714355}).then((response) => {
@@ -61,7 +62,7 @@
 //            }, (response) => {
 //                // error callback
 //            });
-            this.$http.get('http://localhost:3500/song?id=25714355').then((response) => {
+            this.$http.get(window.HOST+'/song?id='+this.id).then((response) => {
                 console.log(response.data);
                 this.$set('songInfo', JSON.parse(response.data))
             }, (response) => {
