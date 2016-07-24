@@ -3,8 +3,11 @@
         <ul>
             <li v-for="item in items" >
                 <div class="item" :class="isPlay">
-                    <img src="{{ item.url }}">
-                    <span><p class="song">{{ item.name}}</p><p class="singer">{{ item.singer }}</p></span>
+                    <img :src="item.url">
+                    <span>
+                        <p class="song">{{ item.name}}</p>
+                        <p class="singer">{{ item.singer }}</p>
+                    </span>
                     <div class="ibtn" @click="play">
                         <i class="iconfont icon-play icon-size"></i>
                     </div>
@@ -34,16 +37,19 @@
             .song{
                 line-height:0.26rem;
                 font-size:.2rem;
+                color:#646464;
             }
             .singer{
                 line-height:0.18rem;
+                color:#929292;
             }
         }
         .ibtn{
             float:right;
-            line-height:.6rem;
             .icon-size{
+                line-height:.6rem;
                 font-size:22px;
+                color: #ececec;
             }
         }
     }

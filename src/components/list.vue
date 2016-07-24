@@ -1,7 +1,7 @@
 <template>
     <div class="list-box">
         <div class="back">
-            <i class="iconfont icon-back"></i>
+            <i class="iconfont icon-back icon-font"></i>
         </div>
         <div class="list-items">
             <items></items>
@@ -18,6 +18,12 @@
             width: 100%;
             height: .5rem;
             background: #fff;
+            .icon-font{
+                font-size:.3rem;
+                color:#ee5648;
+                margin-left:.1rem;
+                line-height: .5rem;
+            }
         }
         .list-items {
             position: absolute;
