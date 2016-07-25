@@ -4,6 +4,7 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+var hostSetting = require('./hostSetting')
 
 var routes = require('./route/index')
 
@@ -26,10 +27,10 @@ app.all('*', function(req, res, next) {
 
 routes(app)
 
-module.exports = app.listen(3500, function (err) {
+module.exports = app.listen(hostSetting.port, function (err) {
     if (err) {
         console.log(err)
         return
     }
-    console.log('Listening at http://localhost:3500')
+    console.log('Listening at http://localhost:'+hostSetting.port)
 })

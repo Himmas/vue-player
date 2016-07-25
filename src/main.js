@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import hostSetting from './hostSetting'
 import Song from './components/song'
 import List from './components/list'
 import VueRouter from 'vue-router'
@@ -7,6 +6,7 @@ import filters from './filters'
 import VueResource from 'vue-resource'
 import store from './vuex/store'
 
+var hostSetting = require('../hostSetting')
 require('./assets/css/m-reset')
 require('./assets/css/global')
 require('./assets/css/icon')

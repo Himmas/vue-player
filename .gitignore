@@ -10,3 +10,4 @@ test/e2e/reports
 ui/
 .idea/
 
+/hostSetting.js

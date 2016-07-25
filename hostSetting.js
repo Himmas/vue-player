@@ -1,8 +1,8 @@
 /**
  * Created by kylin on 16/7/20.
  */
-export default {
+module.exports = {
     protocol:'http://',
     host:'localhost',
-    port:'3500'
+    port:'3800'
 }
