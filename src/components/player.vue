@@ -9,6 +9,23 @@
         </div>
         <div class="all-time">04:10</div>
     </div>
+    <div class="btn-box">
+        <div class="btn-item random-btn">
+            <i class="iconfont icon-random"></i>
+        </div>
+        <div class="btn-item prev-btn">
+            <i class="iconfont icon-prev"></i>
+        </div>
+        <div class="play-btn">
+            <i class="iconfont icon-play"></i>
+        </div>
+        <div class="btn-item next-btn">
+            <i class="iconfont icon-next"></i>
+        </div>
+        <div class="btn-item loop-btn">
+            <i class="iconfont icon-loop"></i>
+        </div>
+    </div>
 </template>
 <style rel="stylesheet/less" lang="less">
     .play-bar-box{
@@ -52,6 +69,41 @@
             flex: 1;
             text-align: center;
             color: #7f7f7f;
+        }
+    }
+    .btn-box{
+        position: absolute;
+        top: 35px;
+        width: 100%;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        .btn-item{
+            flex: 1;
+            color: #f3a99f;
+            i{
+                font-size: .25rem;
+            }
+        }
+        .btn-item:hover{
+            color: #ee5648;
+        }
+        .play-btn{
+            color: #ee5648;
+            width: 1.2rem;
+            text-align: center;
+            i{
+                font-size: .7rem;
+            }
+        }
+        .random-btn,.loop-btn{
+            text-align: center;
+        }
+        .prev-btn{
+            text-align: right;
+        }
+        .next-btn{
+            text-align: left;
         }
     }
 </style>
