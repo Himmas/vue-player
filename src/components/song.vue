@@ -4,10 +4,10 @@
         <div class="song-head"></div>
         <div class="container-box">
             <slide></slide>
-            <lrc :song-id="id"></lrc>
+            <lrc></lrc>
         </div>
         <div class="player-box">
-            <player></player>
+            <player :mp3-url = "songInfo.mp3Url"></player>
         </div>
     </div>
 </template>
@@ -45,11 +45,16 @@
     import slide from './slide'
     import player from './player'
     import lrc from './lrc'
+    import {getNowSongId} from '../vuex/getters'
     export default{
         data(){
             return{
                 songInfo:{},
-                id:420513838
+            }
+        },
+        vuex:{
+            getters:{
+                getNowSongId
             }
         },
         components:{
@@ -62,9 +67,9 @@
 //            }, (response) => {
 //                // error callback
 //            });
-            this.$http.get(window.HOST+'/song?id='+this.id).then((response) => {
+            this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
                 console.log(response.data);
-                this.$set('songInfo', JSON.parse(response.data))
+                this.$set('songInfo', JSON.parse(response.data).songs[0])
             }, (response) => {
                 // error callback
             });

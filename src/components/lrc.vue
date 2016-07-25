@@ -23,15 +23,21 @@
     }
 </style>
 <script type="text/ecmascript-6">
+    import {getNowSongId} from '../vuex/getters'
+
     export default{
-        props:['songId'],
         data(){
             return{
                 songLrc:[]
             }
         },
+        vuex:{
+            getters:{
+                getNowSongId
+            }
+        },
         created(){
-            this.$http.get(window.HOST+'/lrc?id='+this.songId).then((response) => {
+            this.$http.get(window.HOST+'/lrc?id='+this.getNowSongId).then((response) => {
                 var lrcInfo = JSON.parse(response.data)
                 var lrcStr = lrcInfo.lrc.lyric
                 var lrcArr = lrcStr.split('\n')
