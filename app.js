@@ -26,10 +26,10 @@ app.all('*', function(req, res, next) {
 
 routes(app)
 
-module.exports = app.listen(3600, function (err) {
+module.exports = app.listen(3500, function (err) {
     if (err) {
         console.log(err)
         return
     }
-    console.log('Listening at http://localhost:3600')
+    console.log('Listening at http://localhost:3500')
 })
