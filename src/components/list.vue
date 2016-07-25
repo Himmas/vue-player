@@ -1,7 +1,7 @@
 <template>
     <div class="list-box">
-        <div class="back">
-            <i class="iconfont icon-back icon-font"></i>
+        <div class="back" >
+            <i class="iconfont icon-back icon-font" v-link="{path:'/'}"></i>
         </div>
         <div class="list-items">
             <items></items>
