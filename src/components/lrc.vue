@@ -1,6 +1,6 @@
 <template>
    <div class="lrc-box">
-       <p v-for="item in songLrc">{{item.word}}</p>
+       <p v-for="item in songLrc">{{item.word || "&nbsp;"}}</p>
    </div>
 </template>
 <style rel="stylesheet/less" lang="less">
@@ -43,9 +43,10 @@
                 var lrcArr = lrcStr.split('\n')
                 lrcArr.forEach((o,i)=>{
                     lrcArr[i] = {
-                        word: o.replace(/\[(.+)\](.+)/g,'$2'),//歌词
-                        time: o.replace(/\[(.+)\](.+)/g,'$1')//时间
+                        word: o.replace(/\[(.*)\](.*)/g,'$2'),//歌词
+                        time: o.replace(/\[(.*)\](.*)/g,'$1')//时间
                     }
+                    console.log(lrcArr[i]);
                 })
                 this.$set('songLrc', lrcArr)
             }, (response) => {

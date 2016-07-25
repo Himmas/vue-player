@@ -16,8 +16,8 @@
         <div class="btn-item prev-btn">
             <i class="iconfont icon-prev"></i>
         </div>
-        <div class="play-btn">
-            <i class="iconfont icon-play"></i>
+        <div class="play-btn" @click="play">
+            <i class="iconfont" :class="{'icon-pause':getSongStatus.isPlay,'icon-play':!getSongStatus.isPlay}"></i>
         </div>
         <div class="btn-item next-btn">
             <i class="iconfont icon-next"></i>
@@ -26,6 +26,10 @@
             <i class="iconfont icon-loop"></i>
         </div>
     </div>
+    <audio id="audio"
+           :src = "mp3Url">
+        您的浏览器不支持 audio 标签。
+    </audio>
 </template>
 <style rel="stylesheet/less" lang="less">
     .play-bar-box{
@@ -94,6 +98,11 @@
             text-align: center;
             i{
                 font-size: .7rem;
+                position: relative;
+                transition-duration: 1s;
+            }
+            .icon-pause{
+                top: -.065rem;
             }
         }
         .random-btn,.loop-btn{
@@ -108,7 +117,37 @@
     }
 </style>
 <script type="text/ecmascript-6">
+    import {getSongStatus} from '../vuex/getters'
+    import {setPlayStatusPlay,setPlayStatusPause} from '../vuex/actions'
     export default{
-        props:["mp3-url"]
+        props:["mp3-url"],
+        data(){
+            return{
+                audio:null
+            }
+        },
+        vuex:{
+            getters:{
+                getSongStatus
+            },
+            actions:{
+                setPlayStatusPlay,setPlayStatusPause
+            }
+        },
+        methods:{
+            play(){
+                if(this.getSongStatus.isPlay){
+                    this.audio.pause()
+                    this.setPlayStatusPause()
+                }
+                else{
+                    this.audio.play()
+                    this.setPlayStatusPlay()
+                }
+            }
+        },
+        ready(){
+            this.audio = document.getElementById("audio");
+        }
     }
 </script>

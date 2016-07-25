@@ -9,16 +9,20 @@ Vue.use(Vuex)
 
 // 应用初始状态
 const state = {
-    songId : "420513838"
+    // songId : "420513838",
+    songId: "25714355",
+    songStatus:{
+        isPlay:false
+    }
 }
 
 // 定义所需的 mutations
 const mutations = {
-    INCREMENT(state){
-        state.count++
+    SETPLAYSTATUSPLAY(state){
+        state.songStatus.isPlay = true
     },
-    DECREMENT(state){
-        state.count--
+    SETPLAYSTATUSPAUSE(state){
+        state.songStatus.isPlay = false
     }
 }
 
