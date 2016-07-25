@@ -2,9 +2,11 @@ import Vue from 'vue'
 import hostSetting from './hostSetting'
 import Song from './components/song'
 import List from './components/list'
+import testVuex from './components/testVuex'
 import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
+import store from './vuex/store'
 
 require('./assets/css/m-reset')
 require('./assets/css/global')
@@ -20,7 +22,7 @@ window.HOST = hostSetting.protocol+hostSetting.host+':'+hostSetting.port
 
 var router = new VueRouter()
 
-var App = Vue.extend({})
+var App = Vue.extend({store})
 
 router.map({
     '/': {
@@ -28,6 +30,9 @@ router.map({
     },
     '/list': {
         component: List
+    },
+    '/testVue': {
+        component: testVuex
     }
 })
 
