@@ -2,7 +2,6 @@ import Vue from 'vue'
 import hostSetting from './hostSetting'
 import Song from './components/song'
 import List from './components/list'
-import testVuex from './components/testVuex'
 import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
@@ -30,9 +29,6 @@ router.map({
     },
     '/list': {
         component: List
-    },
-    '/testVue': {
-        component: testVuex
     }
 })
 

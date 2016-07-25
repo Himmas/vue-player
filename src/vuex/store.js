@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 // 应用初始状态
 const state = {
-    count : 0
+    songId : "123"
 }
 
 // 定义所需的 mutations
@@ -23,7 +23,7 @@ const mutations = {
 }
 
 // 创建 store 实例
-export default new Vuex.store({
+export default new Vuex.Store({
     state,
     mutations
 })
