@@ -10,3 +10,7 @@ export const setPlayStatusPlay = ({dispatch,state}) => {
 export const setPlayStatusPause = ({dispatch,state}) => {
     dispatch('SETPLAYSTATUSPAUSE')
 }
+//更新搜索数据
+export const setSearchData = ({dispatch,state},data) => {
+    dispatch('SETSEARCHDATA',data)
+}

@@ -2,9 +2,9 @@
     <div class="list-box">
         <div class="back" >
             <i class="iconfont icon-back icon-font" v-link="{path:'/'}"></i>
-            <div class="search">
-                <input class="do-search" placeholder="搜索音乐、歌手、歌词">
-                <i class="iconfont icon-search icon-fr" @click="search"></i>
+            <div class="search" :class="{'border':isShow}">
+                <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr">
+                <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
             </div>
         </div>
         <div class="list-items">
@@ -30,7 +30,6 @@
             }
             .search{
                 float:right;
-                border-bottom: 1px #ee5648 solid;
                 width:80%;
                 line-height: .4rem;
                 margin:.045rem .2rem .045rem 0rem;
@@ -43,7 +42,15 @@
                 }
                 .do-search{
                     text-indent:.1rem;
+                    display:none;
                 }
+            }
+            .border{
+                border-bottom: 1px #ee5648 solid;
+            }
+            .show-input{
+                display:inline;
+                text-indent:.1rem;
             }
         }
         .list-items {
@@ -57,13 +64,40 @@
 </style>
 <script type="text/ecmascript-6">
     import items from './items'
+    import {setSearchData} from '../vuex/actions'
     export default{
+        data(){
+            return {
+                isShow : false,
+                searchStr: ''
+            }
+        },
         components: {
             items
         },
+        vuex: {
+            actions : {
+                setSearchData
+            }
+        },
         methods: {
-            search:()=>{
-                console.log("search")
+            searchClick(){
+                if(this.isShow){
+                    if(this.searchStr!=""){
+                        this.search()
+                    }
+                }else{
+                    this.isShow = true
+                }
+            },
+            search(){
+                console.log(this.searchStr);
+                this.$http.get(window.HOST+'/search?name='+this.searchStr).then((response) => {
+                    console.log(response.data)
+                    this.setSearchData(JSON.parse(response.data))
+                }, (response) => {
+                    // error callback
+                });
             }
         }
     }

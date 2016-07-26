@@ -28,4 +28,10 @@ module.exports = function (app) {
             res.json(data)
         })
     });
+    app.get('/search', function (req, res) {
+        var name = req.query.name
+        api.search(name,function(data){
+            res.json(data)
+        },10)
+    });
 };

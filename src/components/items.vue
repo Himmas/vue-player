@@ -48,13 +48,14 @@
             float:right;
             .icon-size{
                 line-height:.6rem;
-                font-size:22px;
+                font-size:.22rem;
                 color: #ececec;
             }
         }
     }
 </style>
 <script type="text/ecmascript-6">
+    import {getSearchData} from '../vuex/getters'
     export default{
         data(){
             return {
@@ -78,6 +79,11 @@
         methods : {
             play(){
                 console.log("this is playing")
+            }
+        },
+        vuex : {
+            getters : {
+                getSearchData
             }
         }
     }

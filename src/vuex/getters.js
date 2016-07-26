@@ -10,3 +10,7 @@ export function getNowSongId (state) {
 export function getSongStatus (state) {
     return state.songStatus
 }
+//获取搜索结果
+export function getSearchData(state) {
+    return state.searchData
+}

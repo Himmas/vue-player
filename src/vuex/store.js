@@ -13,7 +13,8 @@ const state = {
     songId: "25714355",
     songStatus:{
         isPlay:false
-    }
+    },
+    searchData:''
 }
 
 // 定义所需的 mutations
@@ -23,6 +24,9 @@ const mutations = {
     },
     SETPLAYSTATUSPAUSE(state){
         state.songStatus.isPlay = false
+    },
+    SETSEARCHDATA(state,data){
+        state.searchData = data
     }
 }
 
