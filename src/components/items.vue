@@ -59,18 +59,6 @@
     export default{
         data(){
             return {
-                items : [
-                    {
-                        url:'http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg',
-                        name:'bang bang bang',
-                        singer:'bigBang'
-                    },
-                    {
-                        url:'http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg',
-                        name:'if youo',
-                        singer:'bigBang'
-                    }
-                ],
                 isPlay : {
                     'play': false
                 }
@@ -84,6 +72,15 @@
         vuex : {
             getters : {
                 getSearchData
+            }
+        },
+        computed : {
+            items(){
+                console.log("computed items")
+                console.log(this.getSearchData)
+                console.log(this.getSearchData.songs)
+
+                return this.getSearchData.songs
             }
         }
     }
