@@ -14,7 +14,7 @@ const state = {
     songStatus:{
         isPlay:false
     },
-    searchData:''
+    searchData:{}
 }
 
 // 定义所需的 mutations

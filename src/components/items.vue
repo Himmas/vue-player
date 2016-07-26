@@ -1,12 +1,12 @@
 <template>
     <div class="items">
         <ul>
-            <li v-for="item in items" >
+            <li v-for="item in searchItems" >
                 <div class="item" :class="isPlay">
                     <img :src="item.url">
                     <span>
                         <p class="song">{{ item.name}}</p>
-                        <p class="singer">{{ item.singer }}</p>
+                        <p class="singer">{{ item.artists[0].name }}</p>
                     </span>
                     <div class="ibtn" @click="play">
                         <i class="iconfont icon-play-line icon-size"></i>
@@ -75,12 +75,11 @@
             }
         },
         computed : {
-            items(){
+            searchItems(){
                 console.log("computed items")
                 console.log(this.getSearchData)
-                console.log(this.getSearchData.songs)
-
-                return this.getSearchData.songs
+                console.log(this.getSearchData.result.songs)
+                return this.getSearchData.result.songs
             }
         }
     }
