@@ -32,4 +32,6 @@ router.map({
     }
 })
 
+window.router = router
+
 router.start(App, '#app')

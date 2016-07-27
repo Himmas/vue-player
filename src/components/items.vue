@@ -8,7 +8,7 @@
                         <p class="song">{{ item.name}}</p>
                         <p class="singer">{{ item.artists[0].name }}</p>
                     </span>
-                    <div class="ibtn" @click="setSongId(item.id)">
+                    <div class="ibtn" @click="play(item.id)">
                         <i class="iconfont icon-play-line icon-size"></i>
                     </div>
                 </div>
@@ -66,8 +66,9 @@
             }
         },
         methods : {
-            play(){
-                console.log("this is playing")
+            play(id){
+                this.setSongId(id)
+                router.go({path:'/'})
             }
         },
         vuex : {
