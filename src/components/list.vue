@@ -93,8 +93,8 @@
             },
             search(){
                 console.log(this.searchStr);
-                this.$http.get(window.HOST+'/search?name='+this.searchStr).then((response) => {
-                    console.log(response.data)
+                this.$http.get(window.HOST+'/search?name='+this.searchStr+'&limit=10').then((response) => {
+                    console.log(JSON.parse(response.data))
                     this.setSearchData(JSON.parse(response.data))
                 }, (response) => {
                     // error callback

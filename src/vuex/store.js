@@ -9,8 +9,8 @@ Vue.use(Vuex)
 
 // 应用初始状态
 const state = {
-    // songId : "420513838",
-    songId: "25714355",
+    songId : "420513838",
+    // songId: "25714355",
     songStatus:{
         isPlay:false
     },

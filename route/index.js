@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var api = require('NeteaseCloudMusicApi').api
+var neteaseMusicApi = require('neteaseMusicApi')
 
 
 module.exports = function (app) {
@@ -30,8 +31,9 @@ module.exports = function (app) {
     });
     app.get('/search', function (req, res) {
         var name = req.query.name
-        api.search(name,function(data){
+        var limit = req.query.limit
+        neteaseMusicApi.search(name,function(data){
             res.json(data)
-        },10)
+        },limit)
     });
 };

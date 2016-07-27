@@ -3,7 +3,7 @@
         <ul>
             <li v-for="item in searchItems" >
                 <div class="item" :class="isPlay">
-                    <img :src="item.url">
+                    <img :src="item.album.picUrl">
                     <span>
                         <p class="song">{{ item.name}}</p>
                         <p class="singer">{{ item.artists[0].name }}</p>
@@ -76,9 +76,6 @@
         },
         computed : {
             searchItems(){
-                console.log("computed items")
-                console.log(this.getSearchData)
-                console.log(this.getSearchData.result.songs)
                 return this.getSearchData.result.songs
             }
         }
