@@ -14,7 +14,11 @@ const state = {
     songStatus:{
         isPlay:false
     },
-    searchData:{}
+    searchData:{
+        result:{
+            songs:[]
+        }
+    }
 }
 
 // 定义所需的 mutations
@@ -27,6 +31,9 @@ const mutations = {
     },
     SETSEARCHDATA(state,data){
         state.searchData = data
+    },
+    SETSONGID(state,id){
+        state.songId = id
     }
 }
 

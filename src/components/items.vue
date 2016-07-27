@@ -8,7 +8,7 @@
                         <p class="song">{{ item.name}}</p>
                         <p class="singer">{{ item.artists[0].name }}</p>
                     </span>
-                    <div class="ibtn" @click="play">
+                    <div class="ibtn" @click="setSongId(item.id)">
                         <i class="iconfont icon-play-line icon-size"></i>
                     </div>
                 </div>
@@ -56,6 +56,7 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSearchData} from '../vuex/getters'
+    import {setSongId} from '../vuex/actions'
     export default{
         data(){
             return {
@@ -72,6 +73,9 @@
         vuex : {
             getters : {
                 getSearchData
+            },
+            actions: {
+                setSongId
             }
         },
         computed : {
