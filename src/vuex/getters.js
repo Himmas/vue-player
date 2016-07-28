@@ -14,3 +14,11 @@ export function getSongStatus (state) {
 export function getSearchData(state) {
     return state.searchData
 }
+//获取当前audio
+export function getAudio(state) {
+    return state.audio
+}
+//获取当前播放时间
+export function getCurrentTime(state) {
+    return state.currentTime
+}

@@ -19,3 +19,16 @@ export const clone = function(obj, filterKey){
     }
     return newObj
 }
+
+/**
+ * 03:11.34=>191.34
+ * @param {string} time 时间
+ * @return {string}
+ */
+
+export const timeToSecond = function(time){
+    if (!time)
+        return 0
+    var timeArr = time.split(':')
+    return parseInt(timeArr[0])*60+parseFloat(timeArr[1])
+}

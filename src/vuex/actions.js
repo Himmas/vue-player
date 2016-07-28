@@ -18,3 +18,11 @@ export const setSearchData = ({dispatch,state},data) => {
 export const setSongId = ({dispatch,state},id) => {
     dispatch('SETSONGID',id)
 }
+//设置当前audio对象
+export const setAudio = ({dispatch,state},element) => {
+    dispatch('SETAUDIO',element)
+}
+export const setCurrentTime = ({dispatch,state}) => {
+    dispatch('SETCURRENTTIME')
+}
+

@@ -14,6 +14,8 @@ const state = {
     songStatus:{
         isPlay:false
     },
+    currentTime:0,
+    audio:null,
     searchData:{
         result:{
             songs:[]
@@ -34,6 +36,12 @@ const mutations = {
     },
     SETSONGID(state,id){
         state.songId = id
+    },
+    SETAUDIO(state,element){
+        state.audio = element
+    },
+    SETCURRENTTIME(state){
+        state.currentTime = state.audio.currentTime
     }
 }
 

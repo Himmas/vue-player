@@ -31,6 +31,7 @@
             top: .5rem;
             bottom: 1.5rem;
             width: 100%;
+            overflow: hidden;
         }
         .player-box{
             position: absolute;

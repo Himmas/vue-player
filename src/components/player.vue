@@ -27,7 +27,8 @@
         </div>
     </div>
     <audio id="audio"
-           :src = "mp3Url">
+           :src = "mp3Url"
+           @timeupdate = "setCurrentTime">
         您的浏览器不支持 audio 标签。
     </audio>
 </template>
@@ -117,8 +118,8 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {getSongStatus} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause} from '../vuex/actions'
+    import {getSongStatus,getAudio} from '../vuex/getters'
+    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime} from '../vuex/actions'
     export default{
         props:["mp3-url"],
         data(){
@@ -128,26 +129,26 @@
         },
         vuex:{
             getters:{
-                getSongStatus
+                getSongStatus,getAudio
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause
+                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime
             }
         },
         methods:{
             play(){
                 if(this.getSongStatus.isPlay){
-                    this.audio.pause()
+                    this.getAudio.pause()
                     this.setPlayStatusPause()
                 }
                 else{
-                    this.audio.play()
+                    this.getAudio.play()
                     this.setPlayStatusPlay()
                 }
             }
         },
         ready(){
-            this.audio = document.getElementById("audio");
+            this.setAudio(document.getElementById("audio"))
         }
     }
 </script>
