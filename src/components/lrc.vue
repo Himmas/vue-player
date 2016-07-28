@@ -11,7 +11,7 @@
         text-align: center;
         overflow: auto;
         padding-top: .2rem;
-        transition: .2s;
+        transition: .3s;
         p{
             line-height: .4rem;
             color: #888;
