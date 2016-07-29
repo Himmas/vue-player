@@ -12,9 +12,10 @@ const state = {
     songId : "420513838",
     // songId: "25714355",
     songStatus:{
-        isPlay:false
+        isPlay:false,
+        currentTime:0,
+        duration:0
     },
-    currentTime:0,
     audio:null,
     searchData:{
         result:{
@@ -41,7 +42,10 @@ const mutations = {
         state.audio = element
     },
     SETCURRENTTIME(state){
-        state.currentTime = state.audio.currentTime
+        state.songStatus.currentTime = state.audio.currentTime
+    },
+    SETDURATION(state){
+        state.songStatus.duration = state.audio.duration
     }
 }
 

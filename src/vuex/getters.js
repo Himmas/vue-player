@@ -20,5 +20,8 @@ export function getAudio(state) {
 }
 //获取当前播放时间
 export function getCurrentTime(state) {
-    return state.currentTime
+    return state.songStatus.currentTime
+}
+export function getDuration(state) {
+    return state.songStatus.duration
 }

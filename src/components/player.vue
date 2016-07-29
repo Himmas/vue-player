@@ -1,13 +1,13 @@
 <template>
     <div class="play-bar-box">
-        <div class="now-time">03:23</div>
+        <div class="now-time">{{getCurrentTime | formatTime 'notHasHour'}}</div>
         <div class="play-bar">
             <div class="bar-box">
-                <div class="now-bar"></div>
+                <div class="now-bar" :style="{'width':getCurrentTime/getDuration*100+'%'}"></div>
             </div>
-            <div class="btn-circle"></div>
+            <div class="btn-circle" :style="{'left':getCurrentTime/getDuration*100+'%'}"></div>
         </div>
-        <div class="all-time">04:10</div>
+        <div class="all-time">{{getDuration | formatTime 'notHasHour'}}</div>
     </div>
     <div class="btn-box">
         <div class="btn-item random-btn">
@@ -28,7 +28,10 @@
     </div>
     <audio id="audio"
            :src = "mp3Url"
-           @timeupdate = "setCurrentTime">
+           @timeupdate = "setCurrentTime"
+           @ended = "stop"
+           @loadedmetadata = "setDuration"
+    >
         您的浏览器不支持 audio 标签。
     </audio>
 </template>
@@ -54,7 +57,7 @@
                 overflow: hidden;
                 .now-bar{
                     position: absolute;
-                    width: 50%;
+                    /*width: 50%;*/
                     height: 100%;
                     background: #ee5648;
                 }
@@ -63,8 +66,9 @@
                 position: absolute;
                 top:-5px;
                 border-radius: 50%;
-                left:49%;
+                /*left:0%;*/
                 width: 16px;
+                transform: translateX(-8px);
                 height: 16px;
                 background: #fff;
                 border: 1px solid #faf5ed;
@@ -118,8 +122,8 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {getSongStatus,getAudio} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime} from '../vuex/actions'
+    import {getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
+    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration} from '../vuex/actions'
     export default{
         props:["mp3-url"],
         data(){
@@ -129,10 +133,10 @@
         },
         vuex:{
             getters:{
-                getSongStatus,getAudio
+                getSongStatus,getAudio,getCurrentTime,getDuration
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime
+                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration
             }
         },
         methods:{
@@ -145,6 +149,9 @@
                     this.getAudio.play()
                     this.setPlayStatusPlay()
                 }
+            },
+            stop(){
+                this.setPlayStatusPause()
             }
         },
         ready(){

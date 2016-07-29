@@ -25,4 +25,6 @@ export const setAudio = ({dispatch,state},element) => {
 export const setCurrentTime = ({dispatch,state}) => {
     dispatch('SETCURRENTTIME')
 }
-
+export const setDuration = ({dispatch,state}) => {
+    dispatch('SETDURATION')
+}
