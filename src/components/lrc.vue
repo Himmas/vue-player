@@ -7,7 +7,7 @@
     .lrc-box{
         position: absolute;
         width: 100%;
-        top: 50%;
+        top: 45%;
         text-align: center;
         overflow: auto;
         padding-top: .2rem;
@@ -36,7 +36,7 @@
         watch:{
             nowIndex(val, oldVal) {
                 document.getElementById("lrcBox").style['transform'] = `translateY(-${val*0.4}rem)`
-            },
+            }
         },
         vuex:{
             getters:{
@@ -71,12 +71,14 @@
             },
             getNowIndex(currentTime){
                 for(let i = 0;i<this.songLrc.length;i++){
-                    if(timeToSecond(this.songLrc[i].time)>currentTime)
+                    if(timeToSecond(this.songLrc[i].time)>currentTime || this.songLrc[i].time == '')
                     {
                         this.nowIndex = i-1
-                        return i-1
+                        return this.nowIndex
                     }
                 }
+                this.nowIndex = this.songLrc.length-1
+                return this.nowIndex
             }
         }
     }
