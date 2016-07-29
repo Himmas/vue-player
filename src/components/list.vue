@@ -1,6 +1,6 @@
 <template>
     <div class="list-box">
-        <div class="head" >
+        <div class="header" >
             <i class="iconfont icon-back icon-font" v-link="{path:'/'}"></i>
             <div class="search" :class="{'border':isShow}">
                 <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr">
@@ -17,7 +17,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        .head {
+        .header {
             position: absolute;
             width: 100%;
             height: .5rem;

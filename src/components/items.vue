@@ -4,10 +4,10 @@
             <li v-for="item in searchItems" >
                 <div class="item" :class="isPlay">
                     <img :src="item.album.picUrl">
-                    <span>
+                    <div class="artist">
                         <p class="song">{{ item.name}}</p>
                         <p class="singer">{{ item.artists[0].name }}</p>
-                    </span>
+                    </div>
                     <div class="ibtn" @click="play(item.id)">
                         <i class="iconfont icon-play-line icon-size"></i>
                     </div>
@@ -30,10 +30,12 @@
             border-radius:50%;
             float:left;
         }
-        span{
-            float:left;
-            margin-left:.1rem;
+        .artist{
+            position:absolute;
+            left:.66rem;
+            right:.4rem;
             padding:.08rem;
+            overflow:hidden;
             .song{
                 line-height:0.26rem;
                 font-size:.2rem;
@@ -42,6 +44,9 @@
             .singer{
                 line-height:0.18rem;
                 color:#929292;
+            }
+            p{
+                white-space:nowrap;
             }
         }
         .ibtn{
