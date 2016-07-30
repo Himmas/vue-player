@@ -85,7 +85,7 @@
             },
             getNowIndex(currentTime){
                 for (let i = 0; i < this.songLrc.length; i++) {
-                    if (this.songLrc[i].time > currentTime || this.songLrc[i].time == '') {
+                    if (this.songLrc[i].time >= currentTime || this.songLrc[i].time === '') {
                         this.nowIndex = i - 1
                         return this.nowIndex
                     }

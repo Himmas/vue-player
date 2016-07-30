@@ -10,7 +10,7 @@ Vue.use(Vuex)
 // 应用初始状态
 const state = {
     // songId : "186001",
-    songId: "25714355",
+    songId: "32408002",
     songStatus:{
         status:0,//0停止 1播放 2暂停
         currentTime:0,
@@ -28,12 +28,16 @@ const state = {
 const mutations = {
     SETPLAYSTATUSPLAY(state){
         state.songStatus.status = 1
+        state.audio.play()
     },
     SETPLAYSTATUSPAUSE(state){
         state.songStatus.status = 2
+        state.audio.pause()
     },
     SETPLAYSTATUSSTOP(state){
         state.songStatus.status = 0
+        state.audio.pause()
+        state.audio.currentTime = 0
     },
     SETSEARCHDATA(state,songs){
         state.searchData.result.songs = songs

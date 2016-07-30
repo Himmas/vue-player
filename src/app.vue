@@ -7,6 +7,7 @@
                @ended = "stop"
                @loadedmetadata = "setDuration"
                :autoplay = "isAutoPlay"
+               @canplay = "setCanPlay"
         >
             您的浏览器不支持 audio 标签。
         </audio>
@@ -15,7 +16,7 @@
 <script type="text/ecmascript-6">
     import store from './vuex/store'
     import {getNowSongId} from './vuex/getters'
-    import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay} from './vuex/actions'
+    import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPause,setPlayStatusPlay} from './vuex/actions'
 
     export default{
         store:store,
@@ -39,14 +40,18 @@
             },
             setCurrent(){
                 this.setCurrentTime()
+            },
+            setCanPlay(){
+                if(this.isAutoPlay)
+                    this.setPlayStatusPlay()
             }
         },
         watch:{
             getNowSongId(){
-                this.setCurrentTime(0)
                 this.setPlayStatusStop()
                 this.getSongInfo()
-                this.isAutoPlay = true
+                if(this.songInfo.mp3Url)
+                    this.isAutoPlay = true
             },
             isAutoPlay(auto){
                 if(auto)
@@ -58,7 +63,7 @@
                 getNowSongId
             },
             actions:{
-                setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay
+                setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay,setPlayStatusPause
             }
         },
         ready(){
