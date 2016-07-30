@@ -1,6 +1,5 @@
 <template>
-    <div class="items"
-    >
+    <div class="items">
         <ul>
             <li v-for="item in searchItems" >
                 <div class="item" :class="isPlay">
