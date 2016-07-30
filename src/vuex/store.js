@@ -45,7 +45,7 @@ const mutations = {
         state.audio = element
     },
     SETCURRENTTIME(state,time){
-        if(time && state.songStatus.duration>0) state.audio.currentTime = time
+        if((time && state.songStatus.duration>0) || time == 0) state.audio.currentTime = time
         state.songStatus.currentTime = state.audio.currentTime
     },
     SETDURATION(state){
