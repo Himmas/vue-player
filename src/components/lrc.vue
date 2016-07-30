@@ -1,6 +1,6 @@
 <template>
     <div class="lrc-box" id="lrcBox">
-        <p v-for="item in songLrc | orderBy 'time'" :class="{'on':$index == getNowIndex(getCurrentTime)}">{{item.word ||
+        <p v-for="item in songLrc" :class="{'on':$index == getNowIndex(getCurrentTime)}">{{item.word ||
             "&nbsp;"}}</p>
     </div>
 </template>
@@ -58,8 +58,8 @@
                 var lrcArr = lrcStr.split('\n')
                 var resArr = []
                 lrcArr.forEach((o)=> {
-                    var timeArr = o.replace(/(\[.*\])(.*)/g, '$1').match(/(\[\d{2}:\d{2}\.\d{2}\])/g)//时间
-                    if (timeArr) {
+                    var timeArr = o.replace(/(\[.*\])(.*)/g, '$1').match(/(\[\d{2}:\d{2}\.\d{2}\])/g) || o.replace(/(\[.*\])(.*)/g, '$1')//时间
+                    if (timeArr && timeArr instanceof Array) {
                         timeArr.forEach((m)=> {
                             var lrcObj = {
                                 word: o.replace(/(\[.*\])(.*)/g, '$2'),//歌词,
@@ -73,6 +73,11 @@
                                     }
                                 }
                             } else resArr.push(lrcObj)
+                        })
+                    } else if(typeof timeArr =='string'){
+                        resArr.push({
+                            word: o.replace(/(\[.*\])(.*)/g, '$2'),//歌词,
+                            time: timeToSecond(o.replace(/\[(.*)\](.*)/g, '$1'))
                         })
                     }
                 })

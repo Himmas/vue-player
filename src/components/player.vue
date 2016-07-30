@@ -17,7 +17,7 @@
             <i class="iconfont icon-prev"></i>
         </div>
         <div class="play-btn" @click="play">
-            <i class="iconfont" :class="{'icon-pause':getSongStatus.isPlay,'icon-play':!getSongStatus.isPlay}"></i>
+            <i class="iconfont" :class="{'icon-pause':getSongStatus.status==1,'icon-play':getSongStatus.status!=1}"></i>
         </div>
         <div class="btn-item next-btn">
             <i class="iconfont icon-next"></i>
@@ -28,7 +28,7 @@
     </div>
     <audio id="audio"
            :src = "mp3Url"
-           @timeupdate = "setCurrentTime"
+           @timeupdate = "setCurrent"
            @ended = "stop"
            @loadedmetadata = "setDuration"
     >
@@ -123,7 +123,7 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration} from '../vuex/actions'
+    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration,setPlayStatusStop} from '../vuex/actions'
     export default{
         props:["mp3-url"],
         data(){
@@ -136,12 +136,12 @@
                 getSongStatus,getAudio,getCurrentTime,getDuration
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration
+                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration,setPlayStatusStop
             }
         },
         methods:{
             play(){
-                if(this.getSongStatus.isPlay){
+                if(this.getSongStatus.status == 1){
                     this.getAudio.pause()
                     this.setPlayStatusPause()
                 }
@@ -151,7 +151,11 @@
                 }
             },
             stop(){
-                this.setPlayStatusPause()
+                this.setPlayStatusStop()
+                this.setCurrentTime(0)
+            },
+            setCurrent(){
+                this.setCurrentTime()
             }
         },
         ready(){

@@ -47,33 +47,44 @@
     import player from './player'
     import lrc from './lrc'
     import {getNowSongId} from '../vuex/getters'
+    import {setCurrentTime,setPlayStatusStop} from '../vuex/actions'
     export default{
         data(){
             return{
                 songInfo:{},
+                nowSongId:null
+            }
+        },
+        watch:{
+            nowSongId(){
+                this.setCurrentTime(0)
+                this.setPlayStatusStop()
+                this.getSongInfo()
             }
         },
         vuex:{
             getters:{
                 getNowSongId
+            },
+            actions:{
+                setPlayStatusStop,setCurrentTime
             }
         },
         components:{
             slide,player,lrc
         },
         created(){
-//            this.$http.post('http://localhost:3500/song',{id:25714355}).then((response) => {
-//                console.log(response.data);
-//                this.$set('songInfo', JSON.parse(response.data))
-//            }, (response) => {
-//                // error callback
-//            });
-            this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
-                console.log(response.data);
-                this.$set('songInfo', JSON.parse(response.data).songs[0])
-            }, (response) => {
-                // error callback
-            });
+            this.getSongInfo()
+            this.nowSongId = this.getNowSongId
+        },
+        methods:{
+            getSongInfo(){
+                this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
+                    this.$set('songInfo', JSON.parse(response.data).songs[0])
+                }, (response) => {
+                    // error callback
+                });
+            }
         }
     }
 </script>

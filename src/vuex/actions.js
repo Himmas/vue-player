@@ -10,6 +10,10 @@ export const setPlayStatusPlay = ({dispatch,state}) => {
 export const setPlayStatusPause = ({dispatch,state}) => {
     dispatch('SETPLAYSTATUSPAUSE')
 }
+export const setPlayStatusStop = ({dispatch,state}) => {
+    dispatch('SETPLAYSTATUSSTOP')
+}
+
 //更新搜索数据
 export const setSearchData = ({dispatch,state},songs) => {
     dispatch('SETSEARCHDATA',songs)
@@ -22,9 +26,14 @@ export const setSongId = ({dispatch,state},id) => {
 export const setAudio = ({dispatch,state},element) => {
     dispatch('SETAUDIO',element)
 }
-export const setCurrentTime = ({dispatch,state}) => {
-    dispatch('SETCURRENTTIME')
+
+export const setCurrentTime = ({dispatch,state},time) => {
+    if(isNaN(time))
+        dispatch('SETCURRENTTIME',time)
+    else
+        dispatch('SETCURRENTTIME')
 }
 export const setDuration = ({dispatch,state}) => {
     dispatch('SETDURATION')
 }
+
