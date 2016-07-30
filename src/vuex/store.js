@@ -32,8 +32,8 @@ const mutations = {
     SETPLAYSTATUSPAUSE(state){
         state.songStatus.isPlay = false
     },
-    SETSEARCHDATA(state,data){
-        state.searchData = data
+    SETSEARCHDATA(state,songs){
+        state.searchData.result.songs = songs
     },
     SETSONGID(state,id){
         state.songId = id

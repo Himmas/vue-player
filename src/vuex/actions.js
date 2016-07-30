@@ -11,8 +11,8 @@ export const setPlayStatusPause = ({dispatch,state}) => {
     dispatch('SETPLAYSTATUSPAUSE')
 }
 //更新搜索数据
-export const setSearchData = ({dispatch,state},data) => {
-    dispatch('SETSEARCHDATA',data)
+export const setSearchData = ({dispatch,state},songs) => {
+    dispatch('SETSEARCHDATA',songs)
 }
 //设置当前播放歌曲
 export const setSongId = ({dispatch,state},id) => {

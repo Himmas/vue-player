@@ -1,10 +1,5 @@
 <template>
     <div class="items"
-         @touchstart="touchstart($event)"
-         @touchend="touchend($event)"
-         @mousedown="mousedown($event)"
-         @mousemove="mousemove($event)"
-         @mouseup="mouseup($event)"
     >
         <ul>
             <li v-for="item in searchItems" >
@@ -80,20 +75,6 @@
             play(id){
                 this.setSongId(id)
                 router.go({path:'/'})
-            },
-            touchstart(event){
-                console.log("touchstart")
-                console.log(event.touches[0].clientX)
-            },
-            touchend(){
-                console.log("touchend")
-                console.log(event.changedTouches[0].clientX)
-            },
-            mousedown(){
-            },
-            mousemove(){
-            },
-            mouseup(){
             }
         },
         vuex : {
