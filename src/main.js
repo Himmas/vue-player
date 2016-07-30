@@ -4,7 +4,8 @@ import List from './components/list'
 import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
-import store from './vuex/store'
+import App from './app'
+// import store from './vuex/store'
 import Test from './components/test'
 
 var hostSetting = require('../hostSetting')
@@ -21,8 +22,6 @@ Vue.use(VueResource)
 window.HOST = hostSetting.protocol+hostSetting.host+':'+hostSetting.port
 
 var router = new VueRouter()
-
-var App = Vue.extend({store})
 
 router.map({
     '/': {

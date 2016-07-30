@@ -26,14 +26,6 @@
             <i class="iconfont icon-loop"></i>
         </div>
     </div>
-    <audio id="audio"
-           :src = "mp3Url"
-           @timeupdate = "setCurrent"
-           @ended = "stop"
-           @loadedmetadata = "setDuration"
-    >
-        您的浏览器不支持 audio 标签。
-    </audio>
 </template>
 <style rel="stylesheet/less" lang="less">
     .play-bar-box{
@@ -123,9 +115,8 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration,setPlayStatusStop} from '../vuex/actions'
+    import {setPlayStatusPlay,setPlayStatusPause} from '../vuex/actions'
     export default{
-        props:["mp3-url"],
         data(){
             return{
                 audio:null
@@ -136,7 +127,7 @@
                 getSongStatus,getAudio,getCurrentTime,getDuration
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause,setAudio,setCurrentTime,setDuration,setPlayStatusStop
+                setPlayStatusPlay,setPlayStatusPause
             }
         },
         methods:{
@@ -149,17 +140,7 @@
                     this.getAudio.play()
                     this.setPlayStatusPlay()
                 }
-            },
-            stop(){
-                this.setPlayStatusStop()
-                this.setCurrentTime(0)
-            },
-            setCurrent(){
-                this.setCurrentTime()
             }
-        },
-        ready(){
-            this.setAudio(document.getElementById("audio"))
         }
     }
 </script>

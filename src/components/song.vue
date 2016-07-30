@@ -7,7 +7,7 @@
             <lrc></lrc>
         </div>
         <div class="player-box">
-            <player :mp3-url = "songInfo.mp3Url"></player>
+            <player></player>
         </div>
     </div>
 </template>
@@ -46,45 +46,9 @@
     import slide from './slide'
     import player from './player'
     import lrc from './lrc'
-    import {getNowSongId} from '../vuex/getters'
-    import {setCurrentTime,setPlayStatusStop} from '../vuex/actions'
     export default{
-        data(){
-            return{
-                songInfo:{},
-                nowSongId:null
-            }
-        },
-        watch:{
-            nowSongId(){
-                this.setCurrentTime(0)
-                this.setPlayStatusStop()
-                this.getSongInfo()
-            }
-        },
-        vuex:{
-            getters:{
-                getNowSongId
-            },
-            actions:{
-                setPlayStatusStop,setCurrentTime
-            }
-        },
         components:{
             slide,player,lrc
-        },
-        created(){
-            this.getSongInfo()
-            this.nowSongId = this.getNowSongId
-        },
-        methods:{
-            getSongInfo(){
-                this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
-                    this.$set('songInfo', JSON.parse(response.data).songs[0])
-                }, (response) => {
-                    // error callback
-                });
-            }
         }
     }
 </script>
