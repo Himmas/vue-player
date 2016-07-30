@@ -82,7 +82,6 @@
                     _startY:'',
                     _scrollHeight:'',
                     _offsetHeight:'',
-                    _scrollTop:'',
                     _offset: 0
                 }
             }
@@ -129,13 +128,12 @@
                 this.pagination._startY = e.touches[0].clientY
                 this.pagination._scrollHeight = e.currentTarget.scrollHeight
                 this.pagination._offsetHeight = e.currentTarget.offsetHeight
-                this.pagination._scrollTop = e.currentTarget.scrollTop
             },
             touchend(event){
                 let e = event || window.events
                 console.log("touchend")
                 console.log(e.changedTouches[0].clientY)
-                let sHeight = this.pagination._scrollTop
+                let sHeight = e.currentTarget.scrollTop
                 let thisHeight = sHeight + this.pagination._offsetHeight
                 let realHeight = this.pagination._scrollHeight
                 let startY = this.pagination._startY
