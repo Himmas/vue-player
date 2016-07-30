@@ -32,8 +32,9 @@ module.exports = function (app) {
     app.get('/search', function (req, res) {
         var name = req.query.name
         var limit = req.query.limit
+        var offset = req.query.offset
         neteaseMusicApi.search(name,function(data){
             res.json(data)
-        },limit)
+        },limit,offset)
     });
 };
