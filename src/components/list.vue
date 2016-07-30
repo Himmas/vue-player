@@ -3,7 +3,7 @@
         <div class="header" >
             <i class="iconfont icon-back icon-font" v-link="{path:'/'}"></i>
             <div class="search" :class="{'border':isShow}">
-                <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr">
+                <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr" autofocus>
                 <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
             </div>
         </div>
@@ -40,6 +40,9 @@
                 line-height: .4rem;
                 margin:.045rem .2rem .045rem 0rem;
                 font-size: .17rem;
+                input{
+                    width:90%
+                }
                 .icon-fr{
                     font-size:.2rem;
                     float:right;
