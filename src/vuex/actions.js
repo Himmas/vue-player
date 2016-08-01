@@ -28,7 +28,7 @@ export const setAudio = ({dispatch,state},element) => {
 }
 
 export const setCurrentTime = ({dispatch,state},time) => {
-    if(isNaN(time))
+    if(time || time === 0)
         dispatch('SETCURRENTTIME',time)
     else
         dispatch('SETCURRENTTIME')

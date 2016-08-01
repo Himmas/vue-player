@@ -1,29 +1,41 @@
 <template>
-    <div class="play-bar-box">
-        <div class="now-time">{{getCurrentTime | formatTime 'notHasHour'}}</div>
-        <div class="play-bar">
-            <div class="bar-box">
-                <div class="now-bar" :style="{'width':getCurrentTime/getDuration*100+'%'}"></div>
+    <div @mousemove = "dragDur"
+         @mouseup = "dragEnd"
+         @touchmove = "dragDur"
+         @touchend = "dragEnd"
+    >
+        <div class="play-bar-box">
+            <div class="now-time">{{getCurrentTime | formatTime 'notHasHour'}}</div>
+            <div class="play-bar"
+                 id="play_bar"
+                 @click = "changePlayTime">
+                <div class="bar-box">
+                    <div class="now-bar" :style="{'width':getCurrentTime/getDuration*100+'%'}"></div>
+                </div>
+                <div class="btn-circle"
+                     @mousedown = "dragStart"
+                     @touchstart = "dragStart"
+                     :style="{'left':getCurrentTime/getDuration*100+'%'}"
+                ></div>
             </div>
-            <div class="btn-circle" :style="{'left':getCurrentTime/getDuration*100+'%'}"></div>
+            <div class="all-time">{{getDuration | formatTime 'notHasHour'}}</div>
         </div>
-        <div class="all-time">{{getDuration | formatTime 'notHasHour'}}</div>
-    </div>
-    <div class="btn-box">
-        <div class="btn-item random-btn">
-            <i class="iconfont icon-random"></i>
-        </div>
-        <div class="btn-item prev-btn">
-            <i class="iconfont icon-prev"></i>
-        </div>
-        <div class="play-btn" @click="play">
-            <i class="iconfont" :class="{'icon-pause':getSongStatus.status==1,'icon-play':getSongStatus.status!=1}"></i>
-        </div>
-        <div class="btn-item next-btn">
-            <i class="iconfont icon-next"></i>
-        </div>
-        <div class="btn-item loop-btn">
-            <i class="iconfont icon-loop"></i>
+        <div class="btn-box">
+            <div class="btn-item random-btn">
+                <i class="iconfont icon-random"></i>
+            </div>
+            <div class="btn-item prev-btn">
+                <i class="iconfont icon-prev"></i>
+            </div>
+            <div class="play-btn" @click="play">
+                <i class="iconfont" :class="{'icon-pause':getSongStatus.status==1,'icon-play':getSongStatus.status!=1}"></i>
+            </div>
+            <div class="btn-item next-btn">
+                <i class="iconfont icon-next"></i>
+            </div>
+            <div class="btn-item loop-btn">
+                <i class="iconfont icon-loop"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -115,19 +127,25 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause} from '../vuex/actions'
+    import {setPlayStatusPlay,setPlayStatusPause,setCurrentTime} from '../vuex/actions'
     export default{
         data(){
             return{
-                audio:null
+                isDrag:false
+
             }
+        },
+        ready(){
+            this.playBarPosLeft = document.getElementById("play_bar").getBoundingClientRect().left;
+            //todo:resize窗口时距离窗口左边的值
+            this.barWidth = document.getElementById("play_bar").offsetWidth;
         },
         vuex:{
             getters:{
                 getSongStatus,getAudio,getCurrentTime,getDuration
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause
+                setPlayStatusPlay,setPlayStatusPause,setCurrentTime
             }
         },
         methods:{
@@ -140,6 +158,44 @@
                     this.getAudio.play()
                     this.setPlayStatusPlay()
                 }
+            },
+            dragStart(){
+                this.isDrag = true;
+                if(this.getSongStatus.status == 1)
+                    this.setPlayStatusPause();
+            },
+            dragDur(event){
+                if(this.isDrag == false) return;
+                let e = event || window.event;
+                if (e.type === 'touchmove'){
+//                    手机端触屏事件
+                    if(e.targetTouches[0].clientX >= this.playBarPosLeft && e.targetTouches[0].clientX <= this.playBarPosLeft+this.barWidth){
+                        let timeWidth = e.targetTouches[0].clientX - this.playBarPosLeft;
+                        console.log(e.targetTouches[0].clientX);
+                        this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
+                    }
+                    else {
+                        this.dragEnd();
+                    }
+                }
+                else if(e.clientX >= this.playBarPosLeft && e.clientX <= this.playBarPosLeft+this.barWidth){
+                    let timeWidth = e.clientX - this.playBarPosLeft;
+                    this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
+                }
+                else{
+                    this.dragEnd();
+                }
+            },
+            dragEnd(event){
+                if(this.isDrag){
+                    this.isDrag = false;
+                    this.setPlayStatusPlay()
+                }
+            },
+            changePlayTime(event){
+                let e = event || window.event;
+                let timeWidth = e.clientX - this.playBarPosLeft;
+                this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
             }
         }
     }

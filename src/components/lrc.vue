@@ -36,6 +36,8 @@
         },
         watch: {
             nowIndex(val, oldVal) {
+                if(val == -1)
+                    document.getElementById("lrcBox").style['transform'] = 'translateY(0)'
                 document.getElementById("lrcBox").style['transform'] = `translateY(-${val * 0.4}rem)`
             }
         },
