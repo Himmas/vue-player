@@ -24,9 +24,9 @@ const state = {
     },
     songInfo:{
         name:'',
-        artists:{
+        artists:[{
             name:''
-        },
+        }],
         album:{
             picUrl:''
         }

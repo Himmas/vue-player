@@ -1,20 +1,16 @@
 <template>
-    <div class="items">
-        <ul>
-            <li v-for="item in searchItems" >
-                <div class="item" :class="isPlay">
-                    <img :src="item.album.picUrl">
-                    <div class="artist">
-                        <p class="song">{{ item.name}}</p>
-                        <p class="singer">{{ item.artists[0].name }}</p>
-                    </div>
-                    <div class="ibtn" @click="play(item.id)">
-                        <i class="iconfont icon-play-line icon-size"></i>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <ul class="items">
+        <li v-for="item in searchItems" class="item" :class="isPlay">
+            <img :src="item.album.picUrl">
+            <div class="artist">
+                <p class="song">{{ item.name}}</p>
+                <p class="singer">{{ item.artists[0].name }}</p>
+            </div>
+            <div class="ibtn" @click="play(item.id)">
+                <i class="iconfont icon-play-line icon-size"></i>
+            </div>
+        </li>
+    </ul>
 </template>
 <style rel="stylesheet/less" lang="less">
     .item{

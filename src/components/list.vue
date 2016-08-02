@@ -7,14 +7,16 @@
                 <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
             </div>
         </div>
-        <div class="list-items"
+        <items class="list-items"
              @touchstart="touchstart"
              @touchend="touchend"
              @mousedown="mousedown"
              @mousemove="mousemove"
              @mouseup="mouseup"
         >
-            <items></items>
+        </items>
+        <div class="miniplayer">
+            <miniplayer></miniplayer>
         </div>
     </div>
 </template>
@@ -27,10 +29,11 @@
             position: absolute;
             width: 100%;
             height: .5rem;
-            background: #fff;
+            background: #ee5648;
             .icon-font{
                 font-size:.3rem;
-                color:#ee5648;
+                //color:#ee5648;
+                color:#fff;
                 margin-left:.1rem;
                 line-height: .5rem;
             }
@@ -46,20 +49,25 @@
                 .icon-fr{
                     font-size:.2rem;
                     float:right;
-                    color:#ee5648;
+                    color:#fff;
                     margin-right:.1rem;
                 }
                 .do-search{
                     text-indent:.1rem;
                     display:none;
+                    background-color:transparent;
+                    color:#fff;
                 }
             }
             .border{
-                border-bottom: 1px #ee5648 solid;
+                border-bottom: 1px #fff solid;
             }
             .show-input{
                 display:inline;
                 text-indent:.1rem;
+                border-radius: 1px;
+                background-color:transparent;
+                color:#fff;
             }
         }
         .list-items {
@@ -70,10 +78,17 @@
             background: #fff;
             overflow:auto;
         }
+        .miniplayer{
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.8);
+            width: 100%;
+        }
     }
 </style>
 <script type="text/ecmascript-6">
     import items from './items'
+    import miniplayer from './miniplayer'
     import {getSearchData} from '../vuex/getters'
     import {setSearchData} from '../vuex/actions'
     export default{
@@ -90,7 +105,8 @@
             }
         },
         components: {
-            items
+            items,
+            miniplayer
         },
         vuex: {
             getters : {
@@ -113,7 +129,6 @@
                 }
             },
             search(){
-                console.log(this.searchStr);
                 this.$http.get(window.HOST+'/search?name='+this.searchStr+'&limit=10&offset='+this.pagination._offset).then((response) => {
                     console.log(JSON.parse(response.data))
                     let _searchData = this.getSearchData
@@ -127,15 +142,12 @@
             },
             touchstart(event){
                 let e = event || window.event
-                console.log("touchstart")
                 this.pagination._startY = e.touches[0].clientY
                 this.pagination._scrollHeight = e.currentTarget.scrollHeight
                 this.pagination._offsetHeight = e.currentTarget.offsetHeight
             },
             touchend(event){
                 let e = event || window.events
-                console.log("touchend")
-                console.log(e.changedTouches[0].clientY)
                 let sHeight = e.currentTarget.scrollTop
                 let thisHeight = sHeight + this.pagination._offsetHeight
                 let realHeight = this.pagination._scrollHeight

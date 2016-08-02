@@ -16,7 +16,7 @@
 <script type="text/ecmascript-6">
     import store from './vuex/store'
     import {getNowSongId} from './vuex/getters'
-    import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPause,setPlayStatusPlay} from './vuex/actions'
+    import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPause,setPlayStatusPlay,setSongInfo} from './vuex/actions'
 
     export default{
         store:store,
@@ -29,7 +29,19 @@
         methods:{
             getSongInfo(){
                 this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
-                    this.$set('songInfo', JSON.parse(response.data).songs[0])
+                    let _result = JSON.parse(response.data).songs[0];
+                    console.log(JSON.parse(response.data))
+                    this.$set('songInfo', _result)
+                    let tempSongInfo = {
+                        name: _result.name,
+                        artists:[{
+                            name:_result.artists[0].name
+                        }],
+                        album:{
+                            picUrl:_result.album.picUrl
+                        }
+                    };
+                    this.setSongInfo(tempSongInfo)
                 }, (response) => {
                     // error callback
                 });
@@ -63,7 +75,7 @@
                 getNowSongId
             },
             actions:{
-                setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay,setPlayStatusPause
+                setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay,setPlayStatusPause,setSongInfo
             }
         },
         ready(){
