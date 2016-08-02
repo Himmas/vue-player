@@ -4,7 +4,6 @@
 
 var express = require('express');
 var router = express.Router();
-// var api = require('NeteaseCloudMusicApi').api
 var neteaseMusicApi = require('neteaseMusicApi')
 
 
