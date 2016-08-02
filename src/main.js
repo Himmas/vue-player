@@ -5,8 +5,6 @@ import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
 import App from './app'
-// import store from './vuex/store'
-import Test from './components/test'
 
 var hostSetting = require('../hostSetting')
 require('./assets/css/m-reset')
