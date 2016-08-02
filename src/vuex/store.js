@@ -21,6 +21,15 @@ const state = {
         result:{
             songs:[]
         }
+    },
+    songInfo:{
+        name:'',
+        artists:{
+            name:''
+        },
+        album:{
+            picUrl:''
+        }
     }
 }
 
@@ -54,6 +63,9 @@ const mutations = {
     },
     SETDURATION(state){
         state.songStatus.duration = state.audio.duration
+    },
+    SETSONGINFO(state,songInfo){
+        state.songInfo = songInfo
     }
 }
 

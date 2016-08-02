@@ -37,3 +37,6 @@ export const setDuration = ({dispatch,state}) => {
     dispatch('SETDURATION')
 }
 
+export const setSongInfo = ({dispatch,state}) => {
+    dispatch('SETSONGINFO')
+}

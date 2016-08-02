@@ -22,6 +22,11 @@ export function getAudio(state) {
 export function getCurrentTime(state) {
     return state.songStatus.currentTime
 }
+//获取当前歌曲总时长
 export function getDuration(state) {
     return state.songStatus.duration
+}
+//获取当前歌曲基本信息
+export function getSongInfo(state) {
+    return state.songInfo;
 }
