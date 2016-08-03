@@ -15,7 +15,6 @@
              @mouseup="mouseup"
         >
         </items>
-        <miniplayer></miniplayer>
     </div>
 </template>
 <style rel="stylesheet/less" lang="less">
@@ -27,7 +26,7 @@
             position: absolute;
             width: 100%;
             height: .5rem;
-            background: #BE4841;
+            background: #ee5648;
             .icon-font{
                 font-size:.3rem;
                 //color:#ee5648;
@@ -43,6 +42,9 @@
                 font-size: .17rem;
                 input{
                     width:90%
+                }
+                ::-webkit-input-placeholder {
+                    color: #fff
                 }
                 .icon-fr{
                     font-size:.2rem;
@@ -80,7 +82,6 @@
 </style>
 <script type="text/ecmascript-6">
     import items from './items'
-    import miniplayer from './miniplayer'
     import {getSearchData} from '../vuex/getters'
     import {setSearchData} from '../vuex/actions'
     export default{
@@ -97,8 +98,7 @@
             }
         },
         components: {
-            items,
-            miniplayer
+            items
         },
         vuex: {
             getters : {

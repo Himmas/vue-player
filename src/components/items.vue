@@ -1,12 +1,12 @@
 <template>
     <ul class="items">
-        <li v-for="item in searchItems" class="item" :class="isPlay">
+        <li v-for="item in searchItems" class="item" :class="isPlay" @click="play(item.id)">
             <img :src="item.album.picUrl">
             <div class="artist">
                 <p class="song">{{ item.name}}</p>
                 <p class="singer">{{ item.artists[0].name }}</p>
             </div>
-            <div class="ibtn" @click="play(item.id)">
+            <div class="ibtn">
                 <i class="iconfont icon-play-line icon-size"></i>
             </div>
         </li>
@@ -69,7 +69,6 @@
         methods : {
             play(id){
                 this.setSongId(id)
-                router.go({path:'/'})
             }
         },
         vuex : {

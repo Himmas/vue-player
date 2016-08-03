@@ -1,6 +1,6 @@
 <template>
     <div class="minibar">
-        <img :src="songInfo.album.picUrl">
+        <img :src="songInfo.album.picUrl" v-link="{path:'/song'}">
         <div class="artist">
             <p class="song">{{ songInfo.name}}</p>
             <p class="singer">{{ songInfo.artists[0].name }}</p>
@@ -58,7 +58,7 @@
             i{
                 float:left;
                 line-height: .54rem;
-                color:#BE4841;
+                color:#ee5648;
                 margin-right:.1rem;
             }
             .icon-play-line{
@@ -77,7 +77,7 @@
         width:100%;
         .now-line{
             height:100%;
-            background-color:#BE4841;
+            background-color:#ee5648;
         }
     }
 </style>

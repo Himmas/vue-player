@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Song from './components/song'
-import List from './components/list'
+import Search from './components/search'
+import PlayList from './components/playList'
+import Index from './components/index'
+import Home from './components/home'
 import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
@@ -22,11 +25,22 @@ window.HOST = hostSetting.protocol+hostSetting.host+':'+hostSetting.port
 var router = new VueRouter()
 
 router.map({
-    '/': {
+    '/song': {
         component: Song
     },
-    '/list': {
-        component: List
+    '/': {
+        component: Index,
+        subRoutes: {
+            '/': {
+                component: Home
+            },
+            '/search': {
+                component: Search
+            },
+            '/playList': {
+                component: PlayList
+            }
+        }
     }
 })
 
