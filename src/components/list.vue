@@ -15,9 +15,7 @@
              @mouseup="mouseup"
         >
         </items>
-        <div class="miniplayer">
-            <miniplayer></miniplayer>
-        </div>
+        <miniplayer></miniplayer>
     </div>
 </template>
 <style rel="stylesheet/less" lang="less">
@@ -29,7 +27,7 @@
             position: absolute;
             width: 100%;
             height: .5rem;
-            background: #ee5648;
+            background: #BE4841;
             .icon-font{
                 font-size:.3rem;
                 //color:#ee5648;
@@ -77,12 +75,6 @@
             width: 100%;
             background: #fff;
             overflow:auto;
-        }
-        .miniplayer{
-            position: absolute;
-            bottom: 0;
-            background-color: rgba(255,255,255,0.8);
-            width: 100%;
         }
     }
 </style>
