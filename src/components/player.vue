@@ -162,25 +162,25 @@
             dragStart(){
                 this.isDrag = true;
                 if(this.getSongStatus.status == 1)
-                    this.setPlayStatusPause();
+                    this.setPlayStatusPause()
             },
             dragDur(event){
-                if(this.isDrag == false) return;
-                let e = event || window.event;
+                if(this.isDrag == false) return
+                let e = event || window.event
                 if (e.type === 'touchmove'){
 //                    手机端触屏事件
                     if(e.targetTouches[0].clientX >= this.playBarPosLeft && e.targetTouches[0].clientX <= this.playBarPosLeft+this.barWidth){
-                        let timeWidth = e.targetTouches[0].clientX - this.playBarPosLeft;
-                        console.log(e.targetTouches[0].clientX);
-                        this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
+                        let timeWidth = e.targetTouches[0].clientX - this.playBarPosLeft
+                        console.log(e.targetTouches[0].clientX)
+                        this.setCurrentTime(timeWidth/this.barWidth*this.getDuration)
                     }
                     else {
                         this.dragEnd();
                     }
                 }
                 else if(e.clientX >= this.playBarPosLeft && e.clientX <= this.playBarPosLeft+this.barWidth){
-                    let timeWidth = e.clientX - this.playBarPosLeft;
-                    this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
+                    let timeWidth = e.clientX - this.playBarPosLeft
+                    this.setCurrentTime(timeWidth/this.barWidth*this.getDuration)
                 }
                 else{
                     this.dragEnd();
@@ -193,9 +193,9 @@
                 }
             },
             changePlayTime(event){
-                let e = event || window.event;
-                let timeWidth = e.clientX - this.playBarPosLeft;
-                this.setCurrentTime(timeWidth/this.barWidth*this.getDuration);
+                let e = event || window.event
+                let timeWidth = e.clientX - this.playBarPosLeft
+                this.setCurrentTime(timeWidth/this.barWidth*this.getDuration)
             }
         }
     }
