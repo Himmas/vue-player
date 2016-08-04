@@ -29,4 +29,10 @@ module.exports = function (app) {
             res.json(data)
         },limit,offset)
     });
+    app.get('/playlist', function (req, res) {
+        var id = req.query.id
+        neteaseMusicApi.playlists(id,function(data){
+            res.json(data)
+        })
+    });
 };

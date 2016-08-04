@@ -38,7 +38,7 @@
                 float:right;
                 width:80%;
                 line-height: .4rem;
-                margin:.045rem .2rem .045rem 0rem;
+                margin:.045rem .2rem .045rem 0;
                 font-size: .17rem;
                 input{
                     width:90%
