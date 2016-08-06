@@ -19,7 +19,7 @@
 </template>
 <style rel="stylesheet/less" lang="less">
     .minibar{
-        position: absolute;
+        position: fixed;
         bottom: 0;
         background-color: rgba(255,255,255,0.8);
         width: 100%;
