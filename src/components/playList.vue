@@ -271,8 +271,11 @@
                             color: #888;
                             font-weight: 200;
                             white-space: nowrap;
-                            .artist:not(:last-child):after{
+                            .artist:first-child:after{
                                 content: '/';
+                            }
+                            .artist:first-child:after{
+                                content: '';
                             }
                         }
                     }
