@@ -16,6 +16,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
+        background: #fff;
         .song-bg{
             position: absolute;
             width: 100%;
