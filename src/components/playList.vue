@@ -325,7 +325,7 @@
                     this.$set('playlistInfo', JSON.parse(response.data).result)
                 }, (response) => {
                     // error callback
-                });
+                })
             },
             play(id){
                 this.setSongId(id)
