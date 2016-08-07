@@ -1,7 +1,7 @@
 <template>
     <ul class="items">
         <li v-for="item in searchItems" class="item" :class="isPlay" @click="play(item.id)">
-            <img :src="item.album.picUrl">
+            <img :src="item.album.picUrl+'?param=60y60'">
             <div class="artist">
                 <p class="song">{{ item.name}}</p>
                 <p class="singer">{{ item.artists[0].name }}</p>

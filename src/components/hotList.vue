@@ -1,17 +1,19 @@
 <template>
-1111
+    <div class="hotList">
+        <banner></banner>
+    </div>
 </template>
 <style rel="stylesheet/less" lang="less">
-
+    .hotList{
+        position:relative;
+        top:.5rem;
+    }
 </style>
 <script type="text/ecmascript-6">
+    import banner from './banner'
     export default{
-        data(){
-            return{
-                msg:'hello vue'
-            }
-        },
         components:{
+            banner
         }
     }
 </script>

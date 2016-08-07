@@ -1,11 +1,11 @@
 <template>
     <div class="list-box">
         <div class="header" >
-            <i class="iconfont icon-back icon-font" v-link="{path:'/'}"></i>
+            <i class="iconfont icon-back icon-ml" v-link="{path:'/'}"></i>
             <div class="search" :class="{'border':isShow}">
                 <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr" autofocus>
-                <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
             </div>
+            <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
         </div>
         <items class="list-items"
              @touchstart="touchstart"
@@ -23,16 +23,21 @@
         width: 100%;
         height: 100%;
         .header {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: .5rem;
             background: #ee5648;
-            .icon-font{
-                font-size:.3rem;
-                //color:#ee5648;
+            .iconfont{
                 color:#fff;
-                margin-left:.1rem;
                 line-height: .5rem;
+            }
+            .icon-ml{
+                margin-left:.1rem;
+            }
+            .icon-fr{
+                position: absolute;
+                right:.15rem;
+                color:#fff;
             }
             .search{
                 float:right;
@@ -46,28 +51,22 @@
                 ::-webkit-input-placeholder {
                     color: #fff
                 }
-                .icon-fr{
-                    font-size:.2rem;
-                    float:right;
-                    color:#fff;
-                    margin-right:.1rem;
-                }
                 .do-search{
                     text-indent:.1rem;
                     display:none;
                     background-color:transparent;
                     color:#fff;
                 }
+                .show-input{
+                    display:inline;
+                    text-indent:.1rem;
+                    border-radius: 1px;
+                    background-color:transparent;
+                    color:#fff;
+                }
             }
             .border{
                 border-bottom: 1px #fff solid;
-            }
-            .show-input{
-                display:inline;
-                text-indent:.1rem;
-                border-radius: 1px;
-                background-color:transparent;
-                color:#fff;
             }
         }
         .list-items {
@@ -110,6 +109,7 @@
         },
         methods: {
             searchClick(){
+                console.log('search')
                 if(this.isShow){
                     if(this.searchStr!=""){
                         this.pagination._offset = 0
