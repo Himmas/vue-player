@@ -1,12 +1,15 @@
 <template>
-    <div class="list-bg">
-        <div class="list-box">
+    <div class="list-bg"
+         @click="setListClose"
+         @touchmove="stopDefault"
+    >
+        <div class="list-box" @click.stop="">
             <div class="list-head">
                 <span class="left">收藏首页</span>
                 <span class="center">播放列表(共29首)</span>
                 <span class="right">清空</span>
             </div>
-            <div class="list-body">
+            <div class="list-body" scroll="no" @touchmove.stop="scroll">
                 <div class="list-item on">
                     <i class="iconfont icon-trumpet"></i>
                     <span class="song">
@@ -126,6 +129,7 @@
         height: 100%;
         top: 0;
         background: rgba(0, 0, 0, 0.7);
+        z-index: 20;
         .list-box{
             position: fixed;
             bottom: 0;
@@ -207,7 +211,24 @@
     }
 </style>
 <script type="text/ecmascript-6">
+    import {} from '../vuex/getters'
+    import {setListClose} from '../vuex/actions'
     export default {
-
+        vuex:{
+            actions:{
+                setListClose
+            }
+        },
+        methods:{
+            stopDefault(event){
+                event = event || window.event
+                event.preventDefault()
+            },
+            scroll(event){
+                event = event || window.event
+                event.stopPropagation()
+//                event.preventDefault()
+            }
+        }
     }
 </script>

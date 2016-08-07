@@ -40,3 +40,11 @@ export const setDuration = ({dispatch,state}) => {
 export const setSongInfo = ({dispatch,state},songInfo) => {
     dispatch('SETSONGINFO',songInfo)
 }
+
+export const setListOpen = ({dispatch,state}) => {
+    dispatch('SETLISTOPEN')
+}
+
+export const setListClose = ({dispatch,state}) => {
+    dispatch('SETLISTCLOSE')
+}

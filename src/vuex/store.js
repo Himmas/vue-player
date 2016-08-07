@@ -67,6 +67,12 @@ const mutations = {
     },
     SETSONGINFO(state,songInfo){
         state.songInfo = songInfo
+    },
+    SETLISTOPEN(state){
+        state.listStatus = true
+    },
+    SETLISTCLOSE(state){
+        state.listStatus = false
     }
 }
 
