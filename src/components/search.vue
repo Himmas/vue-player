@@ -3,7 +3,11 @@
         <div class="header" >
             <i class="iconfont icon-back icon-ml" v-link="{path:'/'}"></i>
             <div class="search" :class="{'border':isShow}">
-                <input :class="[isShow ?'show-input':'do-search']" placeholder="搜索音乐、歌手、歌词" v-model="searchStr" autofocus>
+                <input :class="[isShow ?'show-input':'do-search']"
+                       placeholder="搜索音乐、歌手、歌词"
+                       v-model="searchStr"
+                       @keyup.enter="onEnter"
+                       autofocus>
             </div>
             <i class="iconfont icon-search icon-fr" @click="searchClick"></i>
         </div>
@@ -155,7 +159,13 @@
             mousemove(){
             },
             mouseup(){
+            },
+            onEnter(){
+                this.searchClick()
             }
+        },
+        ready(){
+            this.searchClick()
         }
     }
 </script>

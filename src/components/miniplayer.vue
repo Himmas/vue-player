@@ -1,6 +1,6 @@
 <template>
     <div class="minibar">
-        <img :src="songInfo.album.picUrl" v-link="{path:'/song'}">
+        <img :src="songInfo.album.picUrl+'?param=60y60'" v-link="{path:'/song'}">
         <div class="artist">
             <p class="song">{{ songInfo.name}}</p>
             <p class="singer">{{ songInfo.artists[0].name }}</p>
