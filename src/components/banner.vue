@@ -91,7 +91,7 @@
                     _n:'',
                     _startX:'',
                     _scorllWidth:'',
-                    _offset:'',
+                    _status:false,
                 },
                 index:0
             }
@@ -99,9 +99,10 @@
         methods:{
             tstart(event){
                 let e = event || window.event
-                this.drag._n = this.n;
+                this.drag._n = this.n
                 this.drag._startX = e.touches[0].clientX
                 this.drag._scorllWidth = e.currentTarget.scrollWidth
+                this.drag._status = true
             },
             tmove(event){
                 let e = event || window.event
@@ -128,6 +129,7 @@
                         this.turnNext()
                     }
                 }
+                this.drag._status = false
             },
             turnPrev(){
                 if(this.n == 0 ){
@@ -151,7 +153,15 @@
                 let index = this.n/100
                 console.log(index);
                 this.index = index;
+            },
+            autoTurn(){
+                if(!this.drag._status){
+                    this.turnNext()
+                }
             }
+        },
+        ready(){
+            setInterval(this.autoTurn,4000)
         }
     }
 </script>
