@@ -30,3 +30,7 @@ export function getDuration(state) {
 export function getSongInfo(state) {
     return state.songInfo;
 }
+//获取播放列表状态
+export function getListStatus(state) {
+    return state.listStatus;
+}

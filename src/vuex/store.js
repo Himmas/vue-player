@@ -30,7 +30,8 @@ const state = {
         album:{
             picUrl:''
         }
-    }
+    },
+    listStatus:false
 }
 
 // 定义所需的 mutations
