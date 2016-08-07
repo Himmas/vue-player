@@ -12,14 +12,19 @@
             您的浏览器不支持 audio 标签。
         </audio>
     </div>
+    <list></list>
 </template>
 <script type="text/ecmascript-6">
+    import list from './components/list'
     import store from './vuex/store'
     import {getNowSongId} from './vuex/getters'
     import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPause,setPlayStatusPlay,setSongInfo} from './vuex/actions'
 
     export default{
         store:store,
+        components:{
+            list
+        },
         data(){
             return{
                 songInfo:{},
