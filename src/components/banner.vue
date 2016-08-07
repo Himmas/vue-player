@@ -1,32 +1,70 @@
 <template>
     <div class="banner">
-        <div class="banner-box">
+        <div class="banner-box" :style="{ transform:'translateX(-'+n+'%)'}">
             <div class="banner-img"
                  v-for="img in imgs"
                  :style="{ transform:'translateX('+$index+'00%)' }"
+                 @touchstart="tstart"
+                 @touchmove="tmove"
+                 @touchend="tend"
             >
                 <img :src = "img.src">
             </div>
         </div>
         <div class="control-box">
+            <ul class="circle">
+                <li v-for="img in imgs"
+                    :class="[$index==index ? 'on':'']">
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 <style rel="stylesheet/less" lang="less">
     .banner{
+        width:100%;
+        height:2rem;
         .banner-box{
-            position:absolute;
-            transform:translateX(100%);
+            position:relative;
             width:100%;
+            height: 100%;
+            transition: .3s;
             .banner-img{
                 position:absolute;
+                height:100%;
                 width:100%;
                 img{
                     width:100%;
+                    height:100%;
                 }
             }
         }
-
+        .control-box{
+            position:absolute;
+            z-index: 1;
+            width:100%;
+            height:20px;
+            bottom:0;
+            .circle{
+                width:100%;
+                display: inline-block;
+                text-align:center;
+                position: relative;
+                li{
+                    position:relative;
+                    display:inline-block;
+                    height:10px;
+                    width:10px;
+                    background: #cccccc;
+                    border-radius: 50%;
+                    line-height: 20px;
+                    margin-left:2px;
+                }
+                li.on{
+                    background-color: #bc0001;
+                }
+            }
+        }
     }
 </style>
 <script type="text/ecmascript-6">
@@ -47,10 +85,73 @@
                     },{
                         src:'http://p4.music.126.net/4cp7AOk5WgbV3tNr_rgxdg==/2946691205461038.jpg'
                     }
-                ]
+                ],
+                n:0,
+                drag:{
+                    _n:'',
+                    _startX:'',
+                    _scorllWidth:'',
+                    _offset:'',
+                },
+                index:0
             }
         },
-        components:{
+        methods:{
+            tstart(event){
+                let e = event || window.event
+                this.drag._n = this.n;
+                this.drag._startX = e.touches[0].clientX
+                this.drag._scorllWidth = e.currentTarget.scrollWidth
+            },
+            tmove(event){
+                let e = event || window.event
+                let nowX = e.touches[0].clientX
+                let moveX = nowX - this.drag._startX
+                if(this.n == 0 && moveX > 0 ){
+                    this.n = (this.imgs.length-1) *100 - ( moveX / this.drag._scorllWidth )*100
+                }else if (this.n == (this.imgs.length-1) *100 && moveX < 0){
+                    this.n = 0 - ( moveX / this.drag._scorllWidth )*100
+                }else{
+                    this.n = this.drag._n - ( moveX / this.drag._scorllWidth )*100
+                }
+                //console.log(this.n)
+            },
+            tend(event){
+                this.n = this.drag._n;
+                let e = event || window.event
+                let endX = e.changedTouches[0].clientX
+                let dragDistance = endX-this.drag._startX;
+                if(dragDistance && dragDistance > this.drag._scorllWidth/2){
+                    this.turnPrev()
+                }else{
+                    if(Math.abs(dragDistance) > this.drag._scorllWidth/2){
+                        this.turnNext()
+                    }
+                }
+            },
+            turnPrev(){
+                if(this.n == 0 ){
+                    this.n += (this.imgs.length-1) *100
+                    this.setStyle()
+                }else{
+                    this.n -= 100;
+                    this.setStyle()
+                }
+            },
+            turnNext(){
+                if(this.n == (this.imgs.length-1) *100 ){
+                    this.n = 0 ;
+                    this.setStyle()
+                }else{
+                    this.n += 100;
+                    this.setStyle()
+                }
+            },
+            setStyle(){
+                let index = this.n/100
+                console.log(index);
+                this.index = index;
+            }
         }
     }
 </script>
