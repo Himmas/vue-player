@@ -4,7 +4,7 @@
         <div class="head-bg" :style="{'background-image':'url('+playlistInfo.coverImgUrl+'?param=80y80)'}"></div>
         <div class="playlist-head">
             <i class="iconfont icon-back" v-link="{path:'/'}"></i>
-            <span>歌单</span>
+            <span>{{playlistInfo.name}}</span>
         </div>
     </div>
     <div class="playlist-body">
@@ -304,7 +304,7 @@
         data(){
             return{
                 playlistInfo:{},
-                id:436803847
+                id:11612440
 //                id:69188576
             }
         },
@@ -322,6 +322,7 @@
         methods:{
             getPlayList(){
                 this.$http.get(`${window.HOST}/playlist?id=${this.id}`).then((response) => {
+
                     this.$set('playlistInfo', JSON.parse(response.data).result)
                 }, (response) => {
                     // error callback
