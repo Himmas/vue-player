@@ -1,10 +1,14 @@
 <template>
    <div class="head">
       <i class="iconfont icon-menu"></i>
-      <i class="iconfont icon-music"></i>
-      <i class="iconfont icon-music-note"></i>
+      <i class="iconfont icon-music"
+         v-link="{path:'/'}"
+      ></i>
+      <i class="iconfont icon-music-note"
+         v-link="{path:'/playList'}"
+      ></i>
       <i class="iconfont icon-search"
-            v-link="{path:'/search'}"
+         v-link="{path:'/search'}"
       ></i>
    </div>
    <router-view></router-view>
