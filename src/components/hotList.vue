@@ -2,6 +2,7 @@
     <div class="hotList">
         <banner></banner>
     </div>
+
 </template>
 <style rel="stylesheet/less" lang="less">
     .hotList{
