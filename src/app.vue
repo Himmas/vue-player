@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{'no-scroll':getListStatus}" class="root">
         <router-view></router-view>
         <audio id="audio"
                :src = "songInfo.mp3Url"
@@ -89,3 +89,13 @@
         }
     }
 </script>
+<style>
+    .root{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .no-scroll{
+        overflow: hidden;
+    }
+</style>

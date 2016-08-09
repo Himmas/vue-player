@@ -1,116 +1,22 @@
 <template>
-    <div class="list-bg">
-        <div class="list-box">
+    <div class="list-bg"
+         @click="setListClose"
+         @touchmove="stopDefault"
+    >
+        <div class="list-box" @click.stop="">
             <div class="list-head">
                 <span class="left">收藏首页</span>
-                <span class="center">播放列表(共29首)</span>
+                <span class="center">播放列表(共{{getPlayList.length}}首)</span>
                 <span class="right">清空</span>
             </div>
-            <div class="list-body">
-                <div class="list-item on">
+            <div class="list-body" scroll="no" @touchmove.stop="scroll">
+                <div class="list-item" :class="{on:item.id == getNowSongId}" v-for="item in getPlayList">
                     <i class="iconfont icon-trumpet"></i>
                     <span class="song">
-                        <span class="name">HEAVEN</span>
+                        <span class="name">{{item.name}}</span>
                         <span>-</span>
                         <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
-                        </span>
-                    </span>
-                    <i class="iconfont icon-delete"></i>
-                </div>
-                <div class="list-item">
-                    <i class="iconfont icon-trumpet"></i>
-                    <span class="song">
-                        <span class="name">HEAVEN</span>
-                        <span>-</span>
-                        <span class="artists">
-                            <span>Troye Sivan</span>
-                            <span>Betty Who</span>
+                            <span v-for="i in item.artists">{{i.name}}</span>
                         </span>
                     </span>
                     <i class="iconfont icon-delete"></i>
@@ -126,6 +32,7 @@
         height: 100%;
         top: 0;
         background: rgba(0, 0, 0, 0.7);
+        z-index: 20;
         .list-box{
             position: fixed;
             bottom: 0;
@@ -207,7 +114,27 @@
     }
 </style>
 <script type="text/ecmascript-6">
+    import {getPlayList,getNowSongId} from '../vuex/getters'
+    import {setListClose} from '../vuex/actions'
     export default {
-
+        vuex:{
+            actions:{
+                setListClose
+            },
+            getters:{
+                getPlayList,getNowSongId
+            }
+        },
+        methods:{
+            stopDefault(event){
+                event = event || window.event
+                event.preventDefault()
+            },
+            scroll(event){
+                event = event || window.event
+                event.stopPropagation()
+//                event.preventDefault()
+            }
+        }
     }
 </script>

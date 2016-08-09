@@ -31,7 +31,8 @@ const state = {
             picUrl:''
         }
     },
-    listStatus:false
+    listStatus:false,
+    playList:[]
 }
 
 // 定义所需的 mutations
@@ -67,6 +68,15 @@ const mutations = {
     },
     SETSONGINFO(state,songInfo){
         state.songInfo = songInfo
+    },
+    SETLISTOPEN(state){
+        state.listStatus = true
+    },
+    SETLISTCLOSE(state){
+        state.listStatus = false
+    },
+    SETPLAYLIST(state,obj){
+        state.playList = obj
     }
 }
 

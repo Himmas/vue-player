@@ -6,7 +6,7 @@
             <p class="singer">{{ songInfo.artists[0].name }}</p>
         </div>
         <div class="miniplayer">
-            <i class="iconfont icon-list"></i>
+            <i class="iconfont icon-list" @click="setListOpen"></i>
             <i class="iconfont" :class="{'icon-play-line':getSongStatus.status!=1,'icon-pause-line':getSongStatus.status==1}"
                 @click="play"
             ></i>
@@ -83,14 +83,14 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause} from '../vuex/actions'
+    import {setPlayStatusPlay,setPlayStatusPause,setListOpen} from '../vuex/actions'
     export default{
         vuex : {
             getters : {
                 getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration
             },
             actions : {
-                setPlayStatusPlay,setPlayStatusPause
+                setPlayStatusPlay,setPlayStatusPause,setListOpen
             }
         },
         methods : {
