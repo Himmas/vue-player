@@ -25,8 +25,15 @@
             <div class="column">
                 <i class="iconfont icon-hot"></i>
                 <h1>热门歌单</h1>
-                <div class="more">
-                    更多
+            </div>
+            <div class="toplists">
+                <div class="list-item"
+                     v-for="list in hotPlayLists"
+                >
+                    <img class="cover-img" :src="list.coverImgUrl+'?param=180y180'">
+                    <div class="play-count">
+                        <i class="iconfont icon-listen">{{list.playCount}}</i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,14 +95,57 @@
                 line-height:.4rem;
             }
         }
+        .toplists{
+            display: flex;
+            flex-flow: row wrap;
+            align-content: space-between;
+            justify-content: space-between;
+            width:100%;
+            .list-item{
+                position:relative;
+                flex : 0 0 32.5%;
+                .cover-img{
+                    width:100%;
+                    height:100%;
+                }
+                .play-count{
+                    position: absolute;
+                    text-align: right;
+                    top:0;
+                    right:0;
+                    i{
+                        color: #fff;
+                        font-size:14px;
+                    }
+                }
+            }
+        }
     }
 
 </style>
 <script type="text/ecmascript-6">
     import banner from './banner'
     export default{
+        data(){
+            return {
+                hotPlayLists : ''
+            }
+        },
         components:{
             banner
+        },
+        methods:{
+            getHotList(){
+                this.$http.get(window.HOST+'/topPlaylists?limit=6').then((response)=>{
+                    console.log(JSON.parse(response.data))
+                    this.hotPlayLists = JSON.parse(response.data).playlists
+                }),(response) => {
+                    // error callback
+                }
+            }
+        },
+        ready(){
+            this.getHotList()
         }
     }
 </script>

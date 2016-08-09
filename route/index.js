@@ -35,4 +35,10 @@ module.exports = function (app) {
             res.json(data)
         })
     });
+    app.get('/topPlaylists', function (req, res) {
+        var limit = req.query.limit
+        neteaseMusicApi.topPlaylists(function(data){
+            res.json(data)
+        },limit)
+    });
 };
