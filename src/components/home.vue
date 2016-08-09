@@ -5,7 +5,7 @@
          v-link="{path:'/'}"
       ></i>
       <i class="iconfont icon-music-note"
-         v-link="{path:'/playList'}"
+         v-link="{path:'/myPlayList'}"
       ></i>
       <i class="iconfont icon-search"
          v-link="{path:'/search'}"

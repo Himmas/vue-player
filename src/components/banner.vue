@@ -23,6 +23,7 @@
 </template>
 <style rel="stylesheet/less" lang="less">
     .banner{
+        position:relative;
         width:100%;
         height:2rem;
         .banner-box{
