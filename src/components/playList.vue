@@ -30,9 +30,9 @@
             </div>
         </div>
         <div class="list-body">
-            <div class="list-body-head">
+            <div class="list-body-head" @click="playAll">
                 <i class="iconfont icon-play-line left-btn"></i>
-                <div class="playlist-title">播放全部<span class="total">(共{{playlistInfo.tracks.length}}首)</span></div>
+                <div class="playlist-title"><span>播放全部</span><span class="total">(共{{playlistInfo.tracks.length}}首)</span></div>
             </div>
             <div class="playlist">
                 <div class="playlist-item" v-for="item in playlistInfo.tracks" @click="play(item.id)">
@@ -298,7 +298,7 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {setSongId} from '../vuex/actions'
+    import {setSongId,setPlayList} from '../vuex/actions'
     import {getNowSongId} from '../vuex/getters'
     export default{
         data(){
@@ -313,7 +313,7 @@
                 getNowSongId
             },
             actions: {
-                setSongId
+                setSongId,setPlayList
             }
         },
         ready(){
@@ -330,6 +330,9 @@
             },
             play(id){
                 this.setSongId(id)
+            },
+            playAll(){
+                this.setPlayList(this.playlistInfo.tracks)
             }
         }
     }

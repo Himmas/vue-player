@@ -48,3 +48,7 @@ export const setListOpen = ({dispatch,state}) => {
 export const setListClose = ({dispatch,state}) => {
     dispatch('SETLISTCLOSE')
 }
+
+export const setPlayList = ({dispatch,state},list) => {
+    dispatch('SETPLAYLIST',list)
+}

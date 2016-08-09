@@ -34,3 +34,7 @@ export function getSongInfo(state) {
 export function getListStatus(state) {
     return state.listStatus;
 }
+//获取播放列表状态
+export function getPlayList(state) {
+    return state.playList;
+}
