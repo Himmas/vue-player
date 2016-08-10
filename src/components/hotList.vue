@@ -30,10 +30,14 @@
                 <div class="list-item"
                      v-for="list in hotPlayLists"
                 >
-                    <img class="cover-img" :src="list.coverImgUrl+'?param=180y180'">
+                    <img class="cover-img"
+                         :src="list.coverImgUrl+'?param=180y180'"
+                         v-link="{ name: 'playList', params: { id: list.id }}"
+                    >
                     <div class="play-count">
-                        <i class="iconfont icon-listen">{{list.playCount}}</i>
+                        <i class="iconfont icon-listen">{{ list.playCount <10000 ? list.playCount : Math.floor(list.playCount/10000) + '万'}}</i>
                     </div>
+                    <label>{{ list.name}}</label>
                 </div>
             </div>
         </div>
@@ -79,6 +83,7 @@
     .hot{
         border-top:1px solid #eee;
         padding:.06rem;
+        margin-bottom: .6rem;
         .column{
             position:relative;
             height:.4rem;
@@ -110,13 +115,15 @@
                 }
                 .play-count{
                     position: absolute;
-                    text-align: right;
                     top:0;
                     right:0;
                     i{
                         color: #fff;
                         font-size:14px;
                     }
+                }
+                label{
+                    font-size:14px;
                 }
             }
         }
@@ -137,8 +144,9 @@
         methods:{
             getHotList(){
                 this.$http.get(window.HOST+'/topPlaylists?limit=6').then((response)=>{
-                    console.log(JSON.parse(response.data))
-                    this.hotPlayLists = JSON.parse(response.data).playlists
+                    let _hotPlayLists = JSON.parse(response.data).playlists
+                    console.log(JSON.parse(response.data).playlists)
+                    this.hotPlayLists = _hotPlayLists
                 }),(response) => {
                     // error callback
                 }

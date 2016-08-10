@@ -321,8 +321,7 @@
         },
         methods:{
             getPlayList(){
-                this.$http.get(`${window.HOST}/playlist?id=${this.id}`).then((response) => {
-
+                this.$http.get(`${window.HOST}/playlist?id=${this.$route.params.id}`).then((response) => {
                     this.$set('playlistInfo', JSON.parse(response.data).result)
                 }, (response) => {
                     // error callback

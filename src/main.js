@@ -4,9 +4,9 @@ import Search from './components/search'
 import PlayList from './components/playList'
 import Index from './components/index'
 import Home from './components/home'
-import hotList from './components/hotList'
-import userInfo from './components/userInfo'
-import myPlayList from './components/myPlayList'
+import HotList from './components/hotList'
+import UserInfo from './components/userInfo'
+import MyPlayList from './components/myPlayList'
 import VueRouter from 'vue-router'
 import filters from './filters'
 import VueResource from 'vue-resource'
@@ -38,21 +38,22 @@ router.map({
                 component: Home,
                 subRoutes: {
                     '/':{
-                        component: hotList
+                        component: HotList
                     },
                     '/userInfo':{
-                        component: userInfo
+                        component: UserInfo
                     },
                     '/myPlayList':{
-                        component: myPlayList
+                        component: MyPlayList
                     }
                 }
             },
             '/search': {
                 component: Search
             },
-            '/playList': {
-                component: PlayList
+            '/playList/:id': {
+                component: PlayList,
+                name: 'playList'
             }
         }
     }
