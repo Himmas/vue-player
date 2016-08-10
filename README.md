@@ -1,5 +1,5 @@
 #demo
-![](http://7xt8hz.com1.z0.glb.clouddn.com/neteasy%281%29.gif)
+![](http://7xt8hz.com1.z0.glb.clouddn.com/neteasy2.gif)
 
 #usage
 
