@@ -1,5 +1,5 @@
 #demo
-<img src="http://7xt8hz.com1.z0.glb.clouddn.com/neteasy2.gif">
+![](http://ww4.sinaimg.cn/large/675f4a91jw1f1w7pyfbf8g20lm0hakjm.gif)
 
 #usage
 
