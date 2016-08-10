@@ -1,3 +1,20 @@
+#demo
+![](http://7xt8hz.com1.z0.glb.clouddn.com/neteasy%281%29.gif)
+
+#usage
+
+```bash
+$ git clone https://github.com/Himmas/vue-player.git
+
+$ npm install
+
+$ npm run dev
+
+$ node app.js
+
+```
+
+
 #todos
 
 ####播放器
