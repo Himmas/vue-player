@@ -303,9 +303,9 @@
     export default{
         data(){
             return{
-                playlistInfo:{},
-                id:11612440
-//                id:69188576
+                playlistInfo:{
+                    tracks:[]
+                }
             }
         },
         vuex : {
@@ -316,7 +316,7 @@
                 setSongId,setPlayList
             }
         },
-        ready(){
+        created(){
             this.getPlayList()
         },
         methods:{
