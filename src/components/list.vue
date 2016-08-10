@@ -3,14 +3,18 @@
          @click="setListClose"
          @touchmove="stopDefault"
     >
-        <div class="list-box" @click.stop="">
+        <div class="list-out-box" @click.stop="">
             <div class="list-head">
                 <span class="left">收藏首页</span>
                 <span class="center">播放列表(共{{getPlayList.length}}首)</span>
-                <span class="right">清空</span>
+                <span class="right" @click="listEmpty()">清空</span>
             </div>
-            <div class="list-body" scroll="no" @touchmove.stop="scroll">
-                <div class="list-item" :class="{on:item.id == getNowSongId}" v-for="item in getPlayList">
+            <div class="list-body"
+                 @touchmove.stop="scroll">
+                <div class="list-item"
+                     @click.stop="setSongInfo(item)"
+                     :class="{on:item.id == getNowSongId}"
+                     v-for="item in getPlayList">
                     <i class="iconfont icon-trumpet"></i>
                     <span class="song">
                         <span class="name">{{item.name}}</span>
@@ -19,7 +23,7 @@
                             <span v-for="i in item.artists">{{i.name}}</span>
                         </span>
                     </span>
-                    <i class="iconfont icon-delete"></i>
+                    <i class="iconfont icon-delete" @click="deleteSong($index)"></i>
                 </div>
             </div>
         </div>
@@ -33,12 +37,13 @@
         top: 0;
         background: rgba(0, 0, 0, 0.7);
         z-index: 20;
-        .list-box{
+        .list-out-box{
             position: fixed;
             bottom: 0;
             top: auto;
             max-height: 4.6rem;
             background: #f8f8f8;
+            width: 100%;
             .list-head{
                 height: .6rem;
                 box-sizing: border-box;
@@ -115,11 +120,11 @@
 </style>
 <script type="text/ecmascript-6">
     import {getPlayList,getNowSongId} from '../vuex/getters'
-    import {setListClose} from '../vuex/actions'
+    import {setListClose,setSongInfo,deleteSong,listEmpty} from '../vuex/actions'
     export default {
         vuex:{
             actions:{
-                setListClose
+                setListClose,setSongInfo,deleteSong,listEmpty
             },
             getters:{
                 getPlayList,getNowSongId

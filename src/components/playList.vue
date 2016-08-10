@@ -35,7 +35,7 @@
                 <div class="playlist-title"><span>播放全部</span><span class="total">(共{{playlistInfo.tracks.length}}首)</span></div>
             </div>
             <div class="playlist">
-                <div class="playlist-item" v-for="item in playlistInfo.tracks" @click="play(item.id)">
+                <div class="playlist-item" v-for="item in playlistInfo.tracks" @click="play(item)">
                     <i class="iconfont icon-trumpet left-btn" v-if="getNowSongId == item.id"></i>
                     <div class="playlist-num" v-if="getNowSongId != item.id">{{$index+1}}</div>
                     <div class="info-box">
@@ -46,7 +46,7 @@
                             <span class="album">{{item.album.name}}</span>
                         </p>
                     </div>
-                    <i class="iconfont icon-plus right-btn"></i>
+                    <i class="iconfont icon-plus right-btn" @click.stop="addSong(item)"></i>
                 </div>
             </div>
         </div>
@@ -101,6 +101,7 @@
         }
     }
     .playlist-body{
+        margin-bottom: .65rem;
         .playlist-head{
             position: absolute;
             z-index:3;
@@ -298,7 +299,7 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {setSongId,setPlayList} from '../vuex/actions'
+    import {setPlayList,setSongInfo,addSong} from '../vuex/actions'
     import {getNowSongId} from '../vuex/getters'
     export default{
         data(){
@@ -313,7 +314,7 @@
                 getNowSongId
             },
             actions: {
-                setSongId,setPlayList
+                setPlayList,setSongInfo,addSong
             }
         },
         created(){
@@ -327,8 +328,10 @@
                     // error callback
                 })
             },
-            play(id){
-                this.setSongId(id)
+            play(item){
+                this.setSongInfo(item)
+                this.addSong(item,true)
+
             },
             playAll(){
                 this.setPlayList(this.playlistInfo.tracks)

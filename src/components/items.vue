@@ -1,13 +1,13 @@
 <template>
     <ul class="items">
-        <li v-for="item in searchItems" class="item" :class="isPlay" @click="play(item.id)">
+        <li v-for="item in searchItems" class="item" :class="isPlay" @click="play(item)">
             <img :src="item.album.picUrl+'?param=60y60'">
             <div class="artist">
                 <p class="song">{{ item.name}}</p>
                 <p class="singer">{{ item.artists[0].name }}</p>
             </div>
             <div class="ibtn">
-                <i class="iconfont icon-play-line icon-size"></i>
+                <i class="iconfont icon-plus icon-size" @click.stop="addSong(item)"></i>
             </div>
         </li>
     </ul>
@@ -57,7 +57,7 @@
 </style>
 <script type="text/ecmascript-6">
     import {getSearchData} from '../vuex/getters'
-    import {setSongId} from '../vuex/actions'
+    import {setSongInfo,addSong} from '../vuex/actions'
     export default{
         data(){
             return {
@@ -67,8 +67,9 @@
             }
         },
         methods : {
-            play(id){
-                this.setSongId(id)
+            play(item){
+                this.setSongInfo(item)
+                this.addSong(item,true)
             }
         },
         vuex : {
@@ -76,7 +77,7 @@
                 getSearchData
             },
             actions: {
-                setSongId
+                setSongInfo,addSong
             }
         },
         computed : {

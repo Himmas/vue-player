@@ -4,7 +4,7 @@
 
 //获取当前播放歌曲ID
 export function getNowSongId (state) {
-    return state.songId
+    return state.songInfo.id
 }
 //获取当前歌曲播放状态
 export function getSongStatus (state) {
@@ -37,4 +37,8 @@ export function getListStatus(state) {
 //获取播放列表状态
 export function getPlayList(state) {
     return state.playList;
+}
+//获取当前播放歌曲索引
+export function getNowIndex(state) {
+    return state.nowIndex;
 }

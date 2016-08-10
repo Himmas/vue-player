@@ -18,10 +18,7 @@ export const setPlayStatusStop = ({dispatch,state}) => {
 export const setSearchData = ({dispatch,state},songs) => {
     dispatch('SETSEARCHDATA',songs)
 }
-//设置当前播放歌曲
-export const setSongId = ({dispatch,state},id) => {
-    dispatch('SETSONGID',id)
-}
+
 //设置当前audio对象
 export const setAudio = ({dispatch,state},element) => {
     dispatch('SETAUDIO',element)
@@ -36,7 +33,7 @@ export const setCurrentTime = ({dispatch,state},time) => {
 export const setDuration = ({dispatch,state}) => {
     dispatch('SETDURATION')
 }
-
+//设置当前歌曲信息
 export const setSongInfo = ({dispatch,state},songInfo) => {
     dispatch('SETSONGINFO',songInfo)
 }
@@ -52,3 +49,21 @@ export const setListClose = ({dispatch,state}) => {
 export const setPlayList = ({dispatch,state},list) => {
     dispatch('SETPLAYLIST',list)
 }
+
+//播放列表单首删除
+export const deleteSong = ({dispatch,state},index) => {
+    dispatch('DELETESONG',index)
+}
+//添加到播放列表
+export const addSong = ({dispatch,state},item,isTurn=false) => {
+    dispatch('ADDESONG',item,isTurn)
+}
+//播放列表清空
+export const listEmpty = ({dispatch,state}) => {
+    dispatch('LISTEMPTY')
+}
+
+export const turnTo = ({dispatch,state},index) => {
+    dispatch('TURNTO',index)
+}
+

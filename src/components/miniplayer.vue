@@ -10,7 +10,7 @@
             <i class="iconfont" :class="{'icon-play-line':getSongStatus.status!=1,'icon-pause-line':getSongStatus.status==1}"
                 @click="play"
             ></i>
-            <i class="iconfont icon-next-line"></i>
+            <i class="iconfont icon-next-line" @click="turnTo(getNowIndex+1)"></i>
         </div>
     </div>
     <div class="playline">
@@ -82,15 +82,15 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause,setListOpen} from '../vuex/actions'
+    import {getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration,getNowIndex} from '../vuex/getters'
+    import {setPlayStatusPlay,setPlayStatusPause,setListOpen,turnTo} from '../vuex/actions'
     export default{
         vuex : {
             getters : {
-                getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration
+                getSongInfo,getSongStatus,getAudio,getCurrentTime,getDuration,getNowIndex
             },
             actions : {
-                setPlayStatusPlay,setPlayStatusPause,setListOpen
+                setPlayStatusPlay,setPlayStatusPause,setListOpen,turnTo
             }
         },
         methods : {

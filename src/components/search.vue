@@ -80,6 +80,7 @@
             width: 100%;
             background: #fff;
             overflow:auto;
+            margin-bottom: .65rem;
         }
     }
 </style>

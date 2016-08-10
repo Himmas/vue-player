@@ -24,7 +24,7 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {getNowSongId, getCurrentTime} from '../vuex/getters'
+    import {getNowSongId, getCurrentTime ,getSongInfo} from '../vuex/getters'
     import {timeToSecond} from '../libs/utils'
 
     export default{
@@ -39,22 +39,31 @@
                 if(val == -1)
                     document.getElementById("lrcBox").style['transform'] = 'translateY(0)'
                 document.getElementById("lrcBox").style['transform'] = `translateY(-${val * 0.4}rem)`
+            },
+            getSongInfo:{
+                handler:function () {
+                    this.getSongLrc()
+                },
+                deep:true
             }
         },
         vuex: {
             getters: {
-                getNowSongId, getCurrentTime
+                getNowSongId, getCurrentTime,getSongInfo
             }
         },
         created(){
-            this.$http.get(window.HOST + '/lrc?id=' + this.getNowSongId).then((response) => {
-                var lrcInfo = JSON.parse(response.data)
-                this.makeLrcArr(lrcInfo)
-            }, (response) => {
-                // error callback
-            });
+            this.getSongLrc()
         },
         methods: {
+            getSongLrc(){
+                this.$http.get(window.HOST + '/lrc?id=' + this.getNowSongId).then((response) => {
+                    var lrcInfo = JSON.parse(response.data)
+                    this.makeLrcArr(lrcInfo)
+                }, (response) => {
+                    // error callback
+                });
+            },
             makeLrcArr(lrcInfo){
                 var lrcStr = lrcInfo.lrc.lyric
                 var lrcArr = lrcStr.split('\n')

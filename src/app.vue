@@ -2,7 +2,7 @@
     <div :class="{'no-scroll':getListStatus}" class="root">
         <router-view></router-view>
         <audio id="audio"
-               :src = "songInfo.mp3Url"
+               :src = "getSongInfo.mp3Url"
                @timeupdate = "setCurrent"
                @ended = "stop"
                @loadedmetadata = "setDuration"
@@ -17,7 +17,7 @@
 <script type="text/ecmascript-6">
     import list from './components/list'
     import store from './vuex/store'
-    import {getNowSongId,getListStatus} from './vuex/getters'
+    import {getNowSongId,getListStatus,getSongInfo} from './vuex/getters'
     import {setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPause,setPlayStatusPlay,setSongInfo} from './vuex/actions'
 
     export default{
@@ -32,21 +32,21 @@
             }
         },
         methods:{
-            getSongInfo(){
+            getSong(){
                 this.$http.get(window.HOST+'/song?id='+this.getNowSongId).then((response) => {
                     let _result = JSON.parse(response.data).songs[0];
-                    console.log(JSON.parse(response.data))
-                    this.$set('songInfo', _result)
-                    let tempSongInfo = {
-                        name: _result.name,
-                        artists:[{
-                            name:_result.artists[0].name
-                        }],
-                        album:{
-                            picUrl:_result.album.picUrl
-                        }
-                    };
-                    this.setSongInfo(tempSongInfo)
+//                    console.log(JSON.parse(response.data))
+//                    this.$set('songInfo', _result)
+//                    let tempSongInfo = {
+//                        name: _result.name,
+//                        artists:[{
+//                            name:_result.artists[0].name
+//                        }],
+//                        album:{
+//                            picUrl:_result.album.picUrl
+//                        }
+//                    };
+                    this.setSongInfo(_result)
                 }, (response) => {
                     // error callback
                 });
@@ -66,8 +66,8 @@
         watch:{
             getNowSongId(){
                 this.setPlayStatusStop()
-                this.getSongInfo()
-                if(this.songInfo.mp3Url)
+//                this.getSongInfo()
+                if(this.getSongInfo.mp3Url)
                     this.isAutoPlay = true
             },
             isAutoPlay(auto){
@@ -77,7 +77,7 @@
         },
         vuex:{
             getters:{
-                getNowSongId,getListStatus
+                getNowSongId,getListStatus,getSongInfo
             },
             actions:{
                 setAudio,setCurrentTime,setDuration,setPlayStatusStop,setPlayStatusPlay,setPlayStatusPause,setSongInfo
@@ -85,7 +85,7 @@
         },
         ready(){
             this.setAudio(document.getElementById("audio"))
-            this.getSongInfo()
+//            this.getSongInfo()
         }
     }
 </script>

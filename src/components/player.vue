@@ -25,12 +25,12 @@
                 <i class="iconfont icon-random"></i>
             </div>
             <div class="btn-item prev-btn">
-                <i class="iconfont icon-prev"></i>
+                <i class="iconfont icon-prev" @click="turnTo(getNowIndex-1)"></i>
             </div>
             <div class="play-btn" @click="play">
                 <i class="iconfont" :class="{'icon-pause':getSongStatus.status==1,'icon-play':getSongStatus.status!=1}"></i>
             </div>
-            <div class="btn-item next-btn">
+            <div class="btn-item next-btn" @click="turnTo(getNowIndex+1)">
                 <i class="iconfont icon-next"></i>
             </div>
             <div class="btn-item loop-btn">
@@ -126,8 +126,8 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    import {getSongStatus,getAudio,getCurrentTime,getDuration} from '../vuex/getters'
-    import {setPlayStatusPlay,setPlayStatusPause,setCurrentTime} from '../vuex/actions'
+    import {getSongStatus,getAudio,getCurrentTime,getDuration,getNowIndex} from '../vuex/getters'
+    import {setPlayStatusPlay,setPlayStatusPause,setCurrentTime,turnTo} from '../vuex/actions'
     export default{
         data(){
             return{
@@ -142,10 +142,10 @@
         },
         vuex:{
             getters:{
-                getSongStatus,getAudio,getCurrentTime,getDuration
+                getSongStatus,getAudio,getCurrentTime,getDuration,getNowIndex
             },
             actions:{
-                setPlayStatusPlay,setPlayStatusPause,setCurrentTime
+                setPlayStatusPlay,setPlayStatusPause,setCurrentTime,turnTo
             }
         },
         methods:{
