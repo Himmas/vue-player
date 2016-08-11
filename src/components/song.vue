@@ -4,7 +4,7 @@
         <div class="song-head"></div>
         <div class="container-box">
             <slide></slide>
-            <lrc></lrc>
+            <!--<lrc></lrc>-->
         </div>
         <div class="player-box">
             <player></player>
