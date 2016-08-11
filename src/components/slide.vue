@@ -1,11 +1,37 @@
 <template>
-   <div class="slide-box">111</div>
+    <div class="slide-box">
+        <div class="slide-item">
+            <img :src="getSongInfo.album.picUrl">
+            <div class="cover"></div>
+        </div>
+    </div>
 </template>
 <style lang="less" rel="stylesheet/less">
-    .slide-box{
+    .slide-box {
         color: #fff;
+        .slide-item{
+            text-align: center;
+            width: 80%;
+            left: 10%;
+            position: absolute;
+            font-size: 0;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #ff5c4e;
+            img{
+                width: 100%;
+                opacity: 1;
+            }
+        }
     }
 </style>
-<script>
-
+<script type="text/ecmascript-6">
+    import {getSongInfo} from '../vuex/getters'
+    export default{
+        vuex:{
+            getters:{
+                getSongInfo
+            }
+        }
+    }
 </script>
