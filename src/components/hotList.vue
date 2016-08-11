@@ -14,7 +14,9 @@
                 </div>
                 <p>每日推荐</p>
             </div>
-            <div class="block fr mr">
+            <div class="block fr mr"
+                 v-link="{path : '/myPlayList'}"
+            >
                 <div class="iconborder">
                     <i class="iconfont icon-myPlayList"></i>
                 </div>

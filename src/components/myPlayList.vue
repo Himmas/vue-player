@@ -11,7 +11,17 @@ myplaylist
                 msg:'hello vue'
             }
         },
-        components:{
+        methods:{
+            getUserPlayLists(){
+                this.$http.get(window.HOST+'/userPlaylists?id=312224813').then((response)=>{
+                    console.log(JSON.parse(response.data))
+                }),(response) => {
+                    // error callback
+                }
+            }
+        },
+        ready(){
+            this.getUserPlayLists()
         }
     }
 </script>

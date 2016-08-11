@@ -41,4 +41,10 @@ module.exports = function (app) {
             res.json(data)
         },limit)
     });
+    app.get('/userPlaylists', function (req, res) {
+        var id = req.query.id
+        neteaseMusicApi.userPlaylists(id,function(data){
+            res.json(data)
+        })
+    });
 };
