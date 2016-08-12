@@ -11,7 +11,7 @@
         </div>
     </div>
 </template>
-<style lang="less" rel="stylesheet/less">
+<style rel="stylesheet/less" lang="less">
     .song-box{
         position: absolute;
         width: 100%;
