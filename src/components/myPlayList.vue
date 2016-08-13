@@ -1,7 +1,7 @@
 <template>
     <div class="playlist-bd">
         <div class="my-lists">
-            我创建的歌单
+            <label>我创建的歌单</label>
         </div>
         <div class="store-lists">
             收藏的歌单
@@ -26,17 +26,13 @@
             getUserPlayLists(){
                 this.$http.get(window.HOST+'/userPlaylists?id=312224813').then((response)=>{
                     let _myPlayLists = JSON.parse(response.data).playlist
-                    let _myLists = []
-                    let _storeLists = []
-                    _myPlayLists.forEach(function(v){
+                    _myPlayLists.forEach((v) =>{
                         if(v.userId == 312224813){
-                            _myLists.push(v)
+                            this.myLists.push(v)
                         }else{
-                            _storeLists.push(v)
+                            this.storeLists.push(v)
                         }
                     })
-                    this.myLists = _myLists
-                    this.storeLists = _storeLists
                 }),(response) => {
                     // error callback
                 }
