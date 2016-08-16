@@ -1,43 +1,55 @@
 <template>
     <div class="playlist-bd">
-        <div class="my-lists">
+        <div class="my-lists"
+             @click="changeStatus(1)"
+        >
             <div class="lists-title">
                 <i class="iconfont" :class="myTag?'icon-bottom':'icon-right'"></i>
                 <label>我创建的歌单</label>
                 <i class="iconfont icon-vertical" ></i>
             </div>
-            <ul class="my-items">
+            <ul class="my-items"
+                :style="myTag?'display: block;':'display:none'"
+            >
                 <li v-for="list in myLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
                 >
                     <img :src="list.coverImgUrl+'?param=60y60'">
-                    <div class="list-detail">
-                        <p class="name">{{ list.name}}</p>
-                        <p class="from">{{ list.trackCount}}{{ list.creator.nickname }}</p>
-                    </div>
-                    <div class="vbtn">
-                        <i class="iconfont icon-vertical" ></i>
+                    <div class="lbd">
+                        <div class="list-detail">
+                            <p class="name">{{ list.name}}</p>
+                            <p class="from">{{ list.trackCount}} by {{ list.creator.nickname }}</p>
+                        </div>
+                        <div class="vbtn">
+                            <i class="iconfont icon-vertical" ></i>
+                        </div>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="store-lists">
+        <div class="store-lists"
+             @click="changeStatus(2)"
+        >
             <div class="lists-title">
-                <i class="iconfont" :class="myTag?'icon-bottom':'icon-right'"></i>
+                <i class="iconfont" :class="storeTag?'icon-bottom':'icon-right'"></i>
                 <label>收藏的歌单</label>
                 <i class="iconfont icon-vertical" ></i>
             </div>
-            <ul class="store-items">
+            <ul class="store-items"
+                :style="storeTag?'display: block;':'display:none'"
+            >
                 <li v-for="list in storeLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
                 >
                     <img :src="list.coverImgUrl+'?param=60y60'">
-                    <div class="list-detail">
-                        <p class="name">{{ list.name}}</p>
-                        <p class="from">{{ list.trackCount}}{{ list.creator.nickname }}</p>
-                    </div>
-                    <div class="vbtn">
-                        <i class="iconfont icon-vertical" ></i>
+                    <div class="lbd">
+                        <div class="list-detail">
+                            <p class="name">{{ list.name}}</p>
+                            <p class="from">{{ list.trackCount}} by {{ list.creator.nickname }}</p>
+                        </div>
+                        <div class="vbtn">
+                            <i class="iconfont icon-vertical" ></i>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -48,6 +60,7 @@
     .playlist-bd{
         position: relative;
         top:.5rem;
+        margin-bottom:.8rem;
         .lists-title{
             position: relative;
             height: .4rem;
@@ -71,6 +84,8 @@
             border-top: 1px solid #fff;
         }
         ul{
+            display:none;
+            transition : .3s;
             li{
                 width: 100%;
                 overflow: hidden;
@@ -83,25 +98,35 @@
                 img{
                     height: .6rem;
                     width: .6rem;
-                    //flex: 0 0 .6rem;
+                    margin-right: .1rem;
                 }
-                .list-detail{
-                    margin-left: .1rem;
-                    flex: 1;
-                    .name{
-                        font-size: 16px;
+                .lbd{
+                    display: flex;
+                    height:.7rem;
+                    flex:1;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px solid #eee;
+                    overflow: hidden;
+                    .list-detail{
+                        flex: 1;
+                        overflow:hidden;
+                        .name{
+                            font-size: 16px;
+                        }
+                        .from{
+                            font-size: 14px;
+                            color: #888;
+                        }
+                        p{
+                            white-space:nowrap;
+                        }
                     }
-                    .from{
-                        font-size: 14px;
-                        color: #939393;
-                    }
-                    p{
-                        white-space:nowrap;
+                    .vbtn{
+                        color: #888;
                     }
                 }
-                .vbtn{
-                }
-
             }
         }
     }
@@ -129,6 +154,21 @@
                     })
                 }),(response) => {
                     // error callback
+                }
+            },
+            changeStatus(tag){
+                /*let e = event || window.event
+                let _className = e.currentTarget.className*/
+                if(tag == '1'){
+                    if(this.myTag){
+                        this.myTag = false
+                    }else
+                        this.myTag = true
+                }else if(tag == '2'){
+                    if(this.storeTag){
+                        this.storeTag = false
+                    }else
+                        this.storeTag = true
                 }
             }
         },
