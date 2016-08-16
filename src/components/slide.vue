@@ -9,11 +9,12 @@
 <style lang="less" rel="stylesheet/less">
     .slide-box {
         color: #fff;
+        margin-top: .5rem;
         .slide-item{
             text-align: center;
             width: 80%;
             left: 10%;
-            position: absolute;
+            position: relative;
             font-size: 0;
             border-radius: 5px;
             overflow: hidden;

@@ -2,9 +2,17 @@
     <div class="song-box">
         <div class="song-bg"></div>
         <div class="song-head"></div>
-        <div class="container-box">
-            <slide></slide>
-            <!--<lrc></lrc>-->
+        <div class="container-box" @click="changeShow">
+            <div v-show="!showLrc">
+                <slide></slide>
+                <div class="song-info-box">
+                    <h1>{{getSongInfo.name}}</h1>
+                    <p>
+                        <span v-for="artist in getSongInfo.artists">{{artist.name}}</span>
+                    </p>
+                </div>
+            </div>
+            <lrc v-show="showLrc"></lrc>
         </div>
         <div class="player-box">
             <player></player>
@@ -41,15 +49,51 @@
             top: auto;
             width: 100%;
         }
+        .song-info-box{
+            text-align: center;
+            h1{
+                margin-top: .2rem;
+                line-height: .6rem;
+                font-size: .25rem;
+                font-weight: bold;
+            }
+            p{
+                line-height: .3rem;
+                color: #888;
+                font-size: .18rem;
+                span:before{
+                    content: '/';
+                }
+                span:first-child:before{
+                    content: '';
+                }
+            }
+        }
     }
 </style>
 <script type="text/ecmascript-6">
     import slide from './slide'
     import player from './player'
     import lrc from './lrc'
+    import {getSongInfo} from '../vuex/getters'
     export default{
+        data(){
+            return{
+                showLrc:false
+            }
+        },
         components:{
             slide,player,lrc
+        },
+        vuex:{
+            getters:{
+                getSongInfo
+            }
+        },
+        methods:{
+            changeShow(){
+                this.showLrc = !this.showLrc
+            }
         }
     }
 </script>
