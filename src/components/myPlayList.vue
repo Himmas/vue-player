@@ -1,7 +1,7 @@
 <template>
     <div class="playlist-bd">
         <div class="my-lists"
-             @click="changeStatus(1)"
+             @click="changeStatus('myTag')"
         >
             <div class="lists-title">
                 <i class="iconfont"
@@ -11,6 +11,7 @@
             </div>
             <ul class="my-items"
                 v-if="myTag"
+                transition="animate"
             >
                 <li v-for="list in myLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
@@ -29,7 +30,7 @@
             </ul>
         </div>
         <div class="store-lists"
-             @click="changeStatus(2)"
+             @click="changeStatus('storeTag')"
         >
             <div class="lists-title">
                 <i class="iconfont"
@@ -39,6 +40,7 @@
             </div>
             <ul class="store-items"
                 v-if="storeTag"
+                transition="animate"
             >
                 <li v-for="list in storeLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
@@ -131,6 +133,12 @@
             }
         }
     }
+    .animate-transition{
+        transition: all .3s linear;
+    }
+    .animate-enter,.animate-leave{
+        opacity: 0;
+    }
 </style>
 <script type="text/ecmascript-6">
     export default{
@@ -158,19 +166,7 @@
                 }
             },
             changeStatus(tag){
-                /*let e = event || window.event
-                let _className = e.currentTarget.className*/
-                if(tag == '1'){
-                    if(this.myTag){
-                        this.myTag = false
-                    }else
-                        this.myTag = true
-                }else if(tag == '2'){
-                    if(this.storeTag){
-                        this.storeTag = false
-                    }else
-                        this.storeTag = true
-                }
+                this[tag] = !this[tag]
             }
         },
         ready(){
