@@ -4,12 +4,13 @@
              @click="changeStatus(1)"
         >
             <div class="lists-title">
-                <i class="iconfont" :class="myTag?'icon-bottom':'icon-right'"></i>
+                <i class="iconfont"
+                   :class="myTag?'icon-bottom':'icon-right'"></i>
                 <label>我创建的歌单</label>
                 <i class="iconfont icon-vertical" ></i>
             </div>
             <ul class="my-items"
-                :style="myTag?'display: block;':'display:none'"
+                v-if="myTag"
             >
                 <li v-for="list in myLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
@@ -31,12 +32,13 @@
              @click="changeStatus(2)"
         >
             <div class="lists-title">
-                <i class="iconfont" :class="storeTag?'icon-bottom':'icon-right'"></i>
+                <i class="iconfont"
+                   :class="storeTag?'icon-bottom':'icon-right'"></i>
                 <label>收藏的歌单</label>
                 <i class="iconfont icon-vertical" ></i>
             </div>
             <ul class="store-items"
-                :style="storeTag?'display: block;':'display:none'"
+                v-if="storeTag"
             >
                 <li v-for="list in storeLists"
                     v-link="{ name: 'playList', params: { id: list.id }}"
@@ -84,7 +86,6 @@
             border-top: 1px solid #fff;
         }
         ul{
-            display:none;
             transition : .3s;
             li{
                 width: 100%;

@@ -2,7 +2,7 @@
    <div class="head">
       <i class="iconfont icon-menu"></i>
       <i class="iconfont icon-music"
-         v-link="{path:'/'}"
+         v-link="{path:'../'}"
       ></i>
       <i class="iconfont icon-music-note"
          v-link="{path:'/myPlayList'}"

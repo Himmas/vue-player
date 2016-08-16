@@ -1,3 +1,4 @@
+//配置一个入口文件
 var path = require('path')
 var cssLoaders = require('./css-loaders')
 var projectRoot = path.resolve(__dirname, '../')
