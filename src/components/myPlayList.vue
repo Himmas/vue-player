@@ -7,7 +7,18 @@
                 <i class="iconfont icon-vertical" ></i>
             </div>
             <ul class="my-items">
-                <li v-for="list in myLists"></li>
+                <li v-for="list in myLists"
+                    v-link="{ name: 'playList', params: { id: list.id }}"
+                >
+                    <img :src="list.coverImgUrl+'?param=60y60'">
+                    <div class="list-detail">
+                        <p class="name">{{ list.name}}</p>
+                        <p class="from">{{ list.trackCount}}{{ list.creator.nickname }}</p>
+                    </div>
+                    <div class="vbtn">
+                        <i class="iconfont icon-vertical" ></i>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="store-lists">
@@ -17,7 +28,18 @@
                 <i class="iconfont icon-vertical" ></i>
             </div>
             <ul class="store-items">
-                <li v-for="list in storeLists"></li>
+                <li v-for="list in storeLists"
+                    v-link="{ name: 'playList', params: { id: list.id }}"
+                >
+                    <img :src="list.coverImgUrl+'?param=60y60'">
+                    <div class="list-detail">
+                        <p class="name">{{ list.name}}</p>
+                        <p class="from">{{ list.trackCount}}{{ list.creator.nickname }}</p>
+                    </div>
+                    <div class="vbtn">
+                        <i class="iconfont icon-vertical" ></i>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -31,6 +53,8 @@
             height: .4rem;
             background-color: #eee;
             color: #6D6D6D;
+            padding-left:.1rem;
+            padding-right:.1rem;
             i{
                 line-height: .4rem;
             }
@@ -45,6 +69,40 @@
         }
         .store-lists{
             border-top: 1px solid #fff;
+        }
+        ul{
+            li{
+                width: 100%;
+                overflow: hidden;
+                height: .7rem;
+                display:flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: .1rem;
+                img{
+                    height: .6rem;
+                    width: .6rem;
+                    //flex: 0 0 .6rem;
+                }
+                .list-detail{
+                    margin-left: .1rem;
+                    flex: 1;
+                    .name{
+                        font-size: 16px;
+                    }
+                    .from{
+                        font-size: 14px;
+                        color: #939393;
+                    }
+                    p{
+                        white-space:nowrap;
+                    }
+                }
+                .vbtn{
+                }
+
+            }
         }
     }
 </style>
