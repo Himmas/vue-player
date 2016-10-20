@@ -113,7 +113,7 @@
                 flex : 0 0 32.5%;
                 .cover-img{
                     width:100%;
-                    height:100%;
+                    /*height:100%;*/
                 }
                 .play-count{
                     position: absolute;
